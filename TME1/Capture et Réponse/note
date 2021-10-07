@@ -1,0 +1,118 @@
+/home/yann/Bureau/TME1/on prend note/src/cBox.h:14:9: error: expected ‘;’, identifier or ‘(’ before ‘struct’
+   14 | typedef struct Box_s Box;
+      |   
+
+Oublie de ; a la fin de la structure
+
+/home/yann/Bureau/TME1/on prend note/src/cBox.h:16:1: error: unknown type name ‘size_t’
+   16 | size_t  boxAllocateds   ();
+      | ^~~~~~
+/home/yann/Bureau/TME1/on prend note/src/cBox.h:1:1: note: ‘size_t’ is defined in header ‘<stddef.h>’; did you forget to ‘#include <stddef.h>’?
+  +++ |+#include <stddef.h>
+    1 | 
+
+on rajoute #include <stddef.h> au debut du fichier cBox.h
+
+home/yann/Bureau/TME1/on prend note/src/cBox.h: In function ‘boxDelete’:
+/home/yann/Bureau/TME1/on prend note/src/cBox.h:25:1: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘long’
+   25 | long    boxIntersect    ( const Box* box1, const Box* box2 );
+      | ^~~~
+
+Oublie de 2 ¨;¨ a la fin de la ligne 21 et 24
+
+/home/yann/Bureau/TME1/on prend note/src/cBox.h:27:27: error: unknown type name ‘FILE’
+   27 | void    boxPrint        ( FILE* o, Box* box );
+      |                           ^~~~
+/home/yann/Bureau/TME1/on prend note/src/cBox.h:1:1: note: ‘FILE’ is defined in header ‘<stdio.h>’; did you forget to ‘#include <stdio.h>’?
+  +++ |+#include <stdio.h>
+    1 | 
+
+on rajoute #include <stdio.h> au debut du fichier cBox.h
+
+/home/yann/Bureau/TME1/on prend note/src/cMain.c:26:6: warning: ‘main’ is normally a non-static function [-Wmain]
+   26 | int  main ( int argc, char* argv[] )
+      |      ^~~~
+/home/yann/Bureau/TME1/on prend note/src/cMain.c:58:1: error: expected declaration or statement at end of input
+   58 | }
+      | ^
+
+oublie d'une parenthese a la fin de la fonction testFunction().
+
+/home/yann/Bureau/TME1/on prend note/src/cBox.c: In function ‘boxCreate’:
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:46:68: error: ‘x1_’ undeclared (first use in this function); did you mean ‘x1’?
+   46 | ntf( stderr, "boxCreate() \"%s\" [%li %li %li %li]\n", name, x1_, y1_, x2_, y2_ );
+      |                                                              ^~~
+      |                                                              x1
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:46:68: note: each undeclared identifier is reported only once for each function it appears in
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:46:73: error: ‘y1_’ undeclared (first use in this function); did you mean ‘y1’?
+   46 | ( stderr, "boxCreate() \"%s\" [%li %li %li %li]\n", name, x1_, y1_, x2_, y2_ );
+      |                                                                ^~~
+      |                                                                y1
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:46:78: error: ‘x2_’ undeclared (first use in this function); did you mean ‘x2’?
+   46 | ( stderr, "boxCreate() \"%s\" [%li %li %li %li]\n", name, x1_, y1_, x2_, y2_ );
+      |                                                                     ^~~
+      |                                                                     x2
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:46:83: error: ‘y2_’ undeclared (first use in this function); did you mean ‘y2’?
+   46 | oxCreate() \"%s\" [%li %li %li %li]\n", name, x1_, y1_, x2_, y2_ );
+      |                                                              ^~~
+      |                                                              y2
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:48:39: error: expected ‘)’ before ‘;’ token
+   48 |   Box* box = (Box*)malloc( sizeof(Box);
+      |                                       ^
+      |                                       )
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:61:1: error: expected ‘,’ or ‘;’ before ‘}’ token
+   61 | }
+      | ^
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:143:1: error: expected declaration or statement at end of input
+  143 | }
+      | ^
+
+Les arguments x1 x2 y1 y2 de la fonction boxCreate n'ont pas de ¨_¨
+
+/home/yann/Bureau/TME1/on prend note/src/cBox.c: In function ‘boxCreate’:
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:48:39: error: expected ‘)’ before ‘;’ token
+   48 |   Box* box = (Box*)malloc( sizeof(Box);
+      |                                       ^
+      | 
+
+Oublie de parenthese juste avant le ; de la ligne 48 
+
+/home/yann/Bureau/TME1/on prend note/src/cBox.c: In function ‘boxCreate’:
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:50:8: error: ‘Box’ {aka ‘struct Box_s’} has no member named ‘x1’; did you mean ‘x1_’?
+   50 |   box->x1 = x1;
+      |        ^~
+      |        x1_
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:51:8: error: ‘Box’ {aka ‘struct Box_s’} has no member named ‘y1’; did you mean ‘y1_’?
+   51 |   box->y1 = y1;
+      |        ^~
+      |        y1_
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:52:8: error: ‘Box’ {aka ‘struct Box_s’} has no member named ‘x2’; did you mean ‘x2_’?
+   52 |   box->x2 = x2;
+      |        ^~
+      |        x2_
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:53:8: error: ‘Box’ {aka ‘struct Box_s’} has no member named ‘y2’; did you mean ‘y2_’?
+   53 |   box->y2 = y2;
+      |        ^~
+      |        y2_
+
+Les arguments x1 x2 y1 y2 de la structure Box_s ont des ¨_¨ faut donc les rajouters
+
+/usr/bin/ld : CMakeFiles/ctme1.dir/cMain.c.o : dans la fonction « main » :
+/home/yann/Bureau/TME1/on prend note/src/cMain.c:43 : référence indéfinie vers « boxIsEmpty »
+
+la fonction boxIsEmpty a une erreur de frappe dans le fichier cBox.c la fonction est ecrit boxisEmpty soit le i en minuscule
+
+/home/yann/Bureau/TME1/on prend note/src/cBox.c: In function ‘boxCreateEmpty’:
+/home/yann/Bureau/TME1/on prend note/src/cBox.c:32:14: warning: ‘box’ is used uninitialized in this function [-Wuninitialized]
+   32 |   box->name_ = (char*)malloc( sizeof(char)*1024 );
+      |   ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ce warning est du a une erreur de malloc dans la fonction boxCreateEmpty la ligne 31 il y a juste ecrit Box* box; alors que l'on 
+veut Box* box = (Box*)malloc( sizeof(Box));
+
+
+boxCreateEmpty()
+Erreur de segmentation (core dumped)
+
+
+
