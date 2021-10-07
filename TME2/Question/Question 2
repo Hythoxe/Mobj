@@ -1,0 +1,62 @@
+Question 2
+
+yann@mi-notebook-air:~/M1_2/Mobj/TME2/build$ make install
+Scanning dependencies of target tme2
+[ 33%] Building CXX object CMakeFiles/tme2.dir/Box.cpp.o
+[ 66%] Building CXX object CMakeFiles/tme2.dir/Main.cpp.o
+/home/yann/M1_2/Mobj/TME2/src/Main.cpp: In function ‘tme2::Box testFunction(tme2::Box)’:
+/home/yann/M1_2/Mobj/TME2/src/Main.cpp:11:34: error: ‘tme2::Box::Box(std::string, long int, long int, long int, long int)’ is private within this context
+   11 |   Box area ( "area", 0, 0, 15, 50);
+      |                                  ^
+In file included from /home/yann/M1_2/Mobj/TME2/src/Main.cpp:2:
+/home/yann/M1_2/Mobj/TME2/src/Box.h:34:21: note: declared private here
+   34 |                     Box( string name, long x1, long y1, long x2, long y2 );
+      |                     ^~~
+/home/yann/M1_2/Mobj/TME2/src/Main.cpp:20:10: error: ‘tme2::Box::Box(const tme2::Box&)’ is private within this context
+   20 |   return ab;
+      |          ^~
+In file included from /home/yann/M1_2/Mobj/TME2/src/Main.cpp:2:
+/home/yann/M1_2/Mobj/TME2/src/Box.h:35:21: note: declared private here
+   35 |                     Box( const Box& );
+      |                     ^~~
+/home/yann/M1_2/Mobj/TME2/src/Main.cpp: In function ‘int main(int, char**)’:
+/home/yann/M1_2/Mobj/TME2/src/Main.cpp:26:7: error: ‘tme2::Box::Box()’ is private within this context
+   26 |   Box b0;
+      |       ^~
+In file included from /home/yann/M1_2/Mobj/TME2/src/Main.cpp:2:
+/home/yann/M1_2/Mobj/TME2/src/Box.h:33:21: note: declared private here
+   33 |                     Box();
+      |                     ^~~
+/home/yann/M1_2/Mobj/TME2/src/Main.cpp:27:33: error: ‘tme2::Box::Box(std::string, long int, long int, long int, long int)’ is private within this context
+   27 |   Box b1 ( "b1", 15, 10, 30, 20 );
+      |                                 ^
+In file included from /home/yann/M1_2/Mobj/TME2/src/Main.cpp:2:
+/home/yann/M1_2/Mobj/TME2/src/Box.h:34:21: note: declared private here
+   34 |                     Box( string name, long x1, long y1, long x2, long y2 );
+      |                     ^~~
+/home/yann/M1_2/Mobj/TME2/src/Main.cpp:31:18: error: ‘tme2::Box::Box(const tme2::Box&)’ is private within this context
+   31 |   testFunction(b1);
+      |                  ^
+In file included from /home/yann/M1_2/Mobj/TME2/src/Main.cpp:2:
+/home/yann/M1_2/Mobj/TME2/src/Box.h:35:21: note: declared private here
+   35 |                     Box( const Box& );
+      |                     ^~~
+/home/yann/M1_2/Mobj/TME2/src/Main.cpp:7:24: note:   initializing argument 1 of ‘tme2::Box testFunction(tme2::Box)’
+    7 | Box testFunction ( Box ab )
+      |                    ~~~~^~
+/home/yann/M1_2/Mobj/TME2/src/Main.cpp:35:18: error: ‘tme2::Box::Box(const tme2::Box&)’ is private within this context
+   35 |   testFunction(b1);
+      |                  ^
+In file included from /home/yann/M1_2/Mobj/TME2/src/Main.cpp:2:
+/home/yann/M1_2/Mobj/TME2/src/Box.h:35:21: note: declared private here
+   35 |                     Box( const Box& );
+      |                     ^~~
+/home/yann/M1_2/Mobj/TME2/src/Main.cpp:7:24: note:   initializing argument 1 of ‘tme2::Box testFunction(tme2::Box)’
+    7 | Box testFunction ( Box ab )
+      |                    ~~~~^~
+make[2]: *** [CMakeFiles/tme2.dir/build.make:76 : CMakeFiles/tme2.dir/Main.cpp.o] Erreur 1
+make[1]: *** [CMakeFiles/Makefile2:76 : CMakeFiles/tme2.dir/all] Erreur 2
+make: *** [Makefile:130 : all] Erreur 2
+
+
+Le terminale me renvoie des erreurs de vu que la box etant privé elle ne peut pas etre appeller par d'autre fichier.
