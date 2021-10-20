@@ -172,32 +172,27 @@ namespace Netlist {
   }
 
 
-  unsigned int Cell::newNetId ()
-  { return maxNetIds_++; }
-
-
   // Cell::toXml() à écrire ici...
-    void  Cell::toXml ( ostream& stream ) const
-  { 
+  void  Cell::toXml ( ostream& stream ) const{ 
     stream << "<?xml version=\"1.0\"?>\n";
     stream << indent++ << "<cell name=\"" << name_ << "\">\n";
 
     stream << indent++ << "<terms>\n";
-    for ( vector<Term*>::const_iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm ) {
+    for ( vector<Term*>::const_iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm )
       (*iterm)->toXml( stream );
-    }
+
     stream << --indent << "</terms>\n";
 
     stream << indent++ << "<instances>\n";
-    for ( vector<Instance*>::const_iterator iinst=instances_.begin() ; iinst != instances_.end() ; ++iinst ) {
+    for ( vector<Instance*>::const_iterator iinst=instances_.begin() ; iinst != instances_.end() ; ++iinst )
       (*iinst)->toXml( stream );
-    }
+
     stream << --indent << "</instances>\n";
 
     stream << indent++ << "<nets>\n";
-    for ( vector<Net*>::const_iterator inet=nets_.begin() ; inet != nets_.end() ; ++inet ) {
+    for ( vector<Net*>::const_iterator inet=nets_.begin() ; inet != nets_.end() ; ++inet )
       (*inet)->toXml( stream );
-    }
+    
     stream << --indent << "</nets>" << endl;
     stream << --indent <<"</cells>" << endl;
   }

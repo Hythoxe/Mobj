@@ -38,7 +38,7 @@ namespace Netlist {
                    void                    remove            ( Term* );
                    void                    remove            ( Net* );
                    bool                    connect           ( const std::string& name, Net* net );
-                   unsigned int            newNetId          ();
+      inline       unsigned int            newNetId          ();
                    void                    toXml             ( std::ostream& ) const;
     private:
       static  std::vector<Cell*>      cells_;
@@ -54,7 +54,7 @@ namespace Netlist {
   inline const std::vector<Instance*>& Cell::getInstances () const { return instances_; };
   inline const std::vector<Term*>&     Cell::getTerms     () const { return terms_; };
   inline const std::vector<Net*>&      Cell::getNets      () const { return nets_; };
-
+  inline unsigned int                  Cell::newNetId     ()       { return maxNetIds_++; }
 
 }  // Netlist namespace.
 

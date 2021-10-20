@@ -12,20 +12,16 @@ namespace Netlist {
     name_(name),
     id_(owner->newNetId()),
     type_(type),
-    nodes_()
-    {
+    nodes_(){
         owner_->add(this);
     }
 
-    Net::~Net()
-    {
+    Net::~Net(){
         owner_->remove(this);
     }
 
-    void Net::add(Node* node)
-    {
+    void Net::add(Node* node){
         size_t size = getFreeNodeId();
-        //nodes_.insert(nodes_.begin() + size, node);
         nodes_.push_back(node);
         node->setId(size);
     }
@@ -42,26 +38,22 @@ namespace Netlist {
         return false;
     }
 
-    size_t Net::getFreeNodeId () const 
-    {
-        size_t position;
-        if (nodes_.begin() == nodes_.end()) return 0;
-        for (vector<Node*>::const_iterator it = nodes_.begin(); it != nodes_.end() ; ++it)
-            if (*it != NULL)
-                position = (size_t) (it - nodes_.begin()); // mouais
-        return position;
+    size_t Net::getFreeNodeId() const{
+        for (size_t i=0; i<nodes_.size(); i++){
+            if(nodes_[i]==NULL)
+                return i;
+        }
+        return nodes_.size();
     }
 
-    void Net::toXml( ostream& stream)
-    {
-        stream << indent++ << "<net name=\"" << name_ <<"\" type=\"" << Term::toString(type_) << "\"/>\n";
-        for ( vector<Node*>::iterator inode=nodes_.begin() ; inode != nodes_.end() ; ++inode ) {
-            if(*inode != NULL){
+    void Net::toXml( ostream& stream ){
+        stream << indent++ << "<net name=\"" << name_ 
+                           <<"\" type=\""    << Term::toString(type_) 
+                           << "\"/>\n";
+        for (vector<Node*>::iterator inode=nodes_.begin() ; inode != nodes_.end() ; ++inode) {
+            if(*inode != NULL)
                 (*inode)->toXml(stream);
-            }
-            
         }
         stream << --indent << "</net>\n";
     }
-
 }

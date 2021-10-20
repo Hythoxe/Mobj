@@ -32,16 +32,18 @@ namespace Netlist {
 
 
 // Node::toXml() Ã  Ã©crire ici.
-  void  Node::toXml ( ostream& stream ) const
-  {
+  void  Node::toXml ( ostream& stream ) const{
     if (term_->isInternal()) {
       stream << indent << "<node term=\""  << term_->getName()
                        << "\" instance=\"" << term_->getInstance()->getName()
                        << "\" id=\""       << id_;
     } else {
-      stream << indent << "<node term=\"" << term_->getName() << "\" id=\"" << id_;
+      stream << indent << "<node term=\""  << term_->getName() 
+                       << "\" id=\""       << id_;
     }
-    stream << "\" x=\"" << position_.getX() << "\" y=\"" << position_.getY() << "\"/>\n";
+    stream << "\" x=\"" << position_.getX() 
+           << "\" y=\"" << position_.getY() 
+           << "\"/>\n";
   }
 
 

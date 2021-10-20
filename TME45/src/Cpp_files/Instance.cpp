@@ -7,13 +7,12 @@ namespace Netlist {
 
     using namespace std;
     
-    Instance::Instance(Cell* owner, Cell* model, const std::string& name):
+    Instance::Instance( Cell* owner, Cell* model, const std::string& name ):
     owner_(owner),
     masterCell_(model),
     name_(name),
     terms_(),
-    position_()
-    {
+    position_(){
         const vector<Term*>& terms = masterCell_->getTerms();
         for(vector<Term*>::const_iterator iterm=terms.begin(); iterm != terms.end(); ++iterm)
             new Term(this, *iterm);
@@ -24,17 +23,17 @@ namespace Netlist {
         owner_->remove(this);
     }
 
-    Term* Instance::getTerm(const string& name) const {
+    Term* Instance::getTerm( const string& name ) const{
         for (vector<Term*>::const_iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm ) {
             if(*iterm != NULL){
-                if ((*iterm)->getName() == name)  return *iterm;  
+                if((*iterm)->getName() == name)  return *iterm;  
             }
             
         }
         return NULL;
     }
 
-    bool Instance::connect(const std::string& name, Net * net){
+    bool Instance::connect( const std::string& name, Net * net ){
         Term* term = getTerm( name );
         if (term == NULL) return false;
     
@@ -42,15 +41,15 @@ namespace Netlist {
         return true;
     }
 
-    void Instance::add(Term * term){
-        if (getTerm(term->getName())) {
+    void Instance::add( Term * term ){
+        if (getTerm(term->getName())){
             cerr << "[ERROR] Attemp to add duplicated terminal <" << term->getName() << ">." << endl;
             exit( 1 );
         }
         terms_.push_back( term );
     }
 
-    void Instance::remove(Term * term){
+    void Instance::remove( Term * term ){
         for (vector<Term*>::iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm ) {
             if(*iterm != NULL){
                 if (*iterm == term) 
@@ -59,12 +58,14 @@ namespace Netlist {
         }
     }
     
-    void Instance::setPosition( int x , int y ) {
+    void Instance::setPosition( int x , int y ){
         position_ = Point(x,y);
     }
 
-    void Instance::toXml(ostream& stream){
-        stream << indent << "<instance name=\"" << name_ << "\" mastercell=\"" << masterCell_->getName()
-        << "\" x=\"" << position_.getX() << "\" y=\"" << position_.getY() << "\"/>\n";
+    void Instance::toXml( ostream& stream ){
+        stream << indent << "<instance name=\"" << name_ 
+                         << "\" mastercell=\""  << masterCell_->getName()
+                         << "\" x=\""           << position_.getX() 
+                         << "\" y=\""           << position_.getY() << "\"/>\n";
     }
 }
