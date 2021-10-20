@@ -171,7 +171,6 @@ namespace Netlist {
     }
   }
 
-
   // Cell::toXml() à écrire ici...
   void  Cell::toXml ( ostream& stream ) const{ 
     stream << "<?xml version=\"1.0\"?>\n";

@@ -24,7 +24,7 @@ namespace Netlist {
     }
 
     Term* Instance::getTerm( const string& name ) const{
-        for (vector<Term*>::const_iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm ) {
+        for (vector<Term*>::const_iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm) {
             if(*iterm != NULL){
                 if((*iterm)->getName() == name)  return *iterm;  
             }
@@ -35,8 +35,8 @@ namespace Netlist {
 
     bool Instance::connect( const std::string& name, Net * net ){
         Term* term = getTerm( name );
-        if (term == NULL) return false;
-    
+        if (term == NULL) 
+            return false;
         term->setNet( net );
         return true;
     }
@@ -50,10 +50,10 @@ namespace Netlist {
     }
 
     void Instance::remove( Term * term ){
-        for (vector<Term*>::iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm ) {
+        for (vector<Term*>::iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm) {
             if(*iterm != NULL){
                 if (*iterm == term) 
-                terms_.erase( iterm );   
+                terms_.erase(iterm);   
             }
         }
     }

@@ -53,19 +53,19 @@ namespace Netlist{
     };
     
 
-    inline bool             Term::isInternal() const { return (type_ == Internal); }
-    inline bool             Term::isExternal() const { return (type_ == External); }
-    inline const string&    Term::getName() const { return name_; }
-    inline Node*            Term::getNode(){ return &node_; }
-    inline Net*             Term::getNet() const { return net_; }
-    inline Cell*            Term::getCell() const { return (type_== External ? static_cast<Cell*>(owner_) : NULL); }
-    inline Instance*        Term::getInstance() const { return (type_ == Internal ? static_cast<Instance*>(owner_) : NULL); }
-    inline Term::Direction  Term::getDirection() const { return direction_; }
-    inline Point            Term::getPosition() const { return node_.getPosition(); }
-    inline Term::Type       Term::getType() const { return type_; }
-    inline void             Term::setDirection( Term::Direction d ){ direction_ = d ; }
-    inline void             Term::setPosition( const Point& p ){ node_.setPosition(p); }
-    inline void             Term::setPosition( int x, int y ){ node_.setPosition(x,y); }
+    inline bool             Term::isInternal()                const { return (type_ == Internal); }
+    inline bool             Term::isExternal()                const { return (type_ == External); }
+    inline const string&    Term::getName()                   const { return name_; }
+    inline Node*            Term::getNode()                         { return &node_; }
+    inline Net*             Term::getNet()                    const { return net_; }
+    inline Cell*            Term::getCell()                   const { return (type_== External ? static_cast<Cell*>(owner_) : NULL); }
+    inline Instance*        Term::getInstance()               const { return (type_ == Internal ? static_cast<Instance*>(owner_) : NULL); }
+    inline Term::Direction  Term::getDirection()              const { return direction_; }
+    inline Point            Term::getPosition()               const { return node_.getPosition(); }
+    inline Term::Type       Term::getType()                   const { return type_; }
+    inline void             Term::setDirection( Term::Direction d ) { direction_ = d ; }
+    inline void             Term::setPosition( const Point& p )     { node_.setPosition(p); }
+    inline void             Term::setPosition( int x, int y )       { node_.setPosition(x,y); }
 }
 
 #endif // NETLIST_TERM_H

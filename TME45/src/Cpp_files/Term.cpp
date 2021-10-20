@@ -18,10 +18,10 @@ namespace Netlist {
         owner->add(this);
     }
 
-    Term::Term( Instance* owner, const Term * masterTerm ):
+    Term::Term( Instance* owner, const Term * Term ):
     owner_((void*)owner),
-    name_(masterTerm->getName()),
-    direction_(masterTerm->getDirection()),
+    name_(Term->getName()),
+    direction_(Term->getDirection()),
     type_(Internal),
     net_(),
     node_(this){
@@ -35,8 +35,7 @@ namespace Netlist {
             static_cast<Instance*>(owner_)->remove(this);
     }
 
-    string Term::toString( Term::Type t )
-    {
+    string Term::toString( Term::Type t ){
         string s;
         switch (t){
             case 1: s = "Internal";
@@ -82,11 +81,7 @@ namespace Netlist {
     }
 
     Cell* Term::getOwnerCell() const{   
-        return (type_ == External)  ? static_cast<Cell*>(owner_) : static_cast<Instance*>(owner_)->getCell(); 
-        if (type_ == Internal)
-            return getInstance() -> getCell();
-        else
-            return static_cast<Cell *>(owner_);
+        return (type_ == External) ? static_cast<Cell*>(owner_) : static_cast<Instance*>(owner_)->getCell(); 
     }
 
     void Term::setNet( Net* net ){

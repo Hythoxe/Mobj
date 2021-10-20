@@ -16,7 +16,7 @@ namespace Netlist {
   class Net;
 
 
-  class Node {
+  class Node{
     public:
       static const size_t  noid;
     public:

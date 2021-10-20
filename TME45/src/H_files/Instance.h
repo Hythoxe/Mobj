@@ -7,7 +7,7 @@
 
 #pragma once
 
-namespace Netlist {
+namespace Netlist{
 
     using namespace std;
 
