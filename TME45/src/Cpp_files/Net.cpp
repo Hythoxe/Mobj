@@ -48,7 +48,7 @@ namespace Netlist {
 
     void Net::toXml( ostream& stream ){
         stream << indent++ << "<net name=\"" << name_ 
-                           <<"\" type=\""    << Term::toString(type_) 
+                           << "\" type=\""   << Term::toString(type_) 
                            << "\"/>\n";
         for (vector<Node*>::iterator inode=nodes_.begin() ; inode != nodes_.end() ; ++inode) {
             if(*inode != NULL)

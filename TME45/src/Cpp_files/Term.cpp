@@ -8,20 +8,20 @@ namespace Netlist {
 
     using namespace std;
 
-    Term::Term( Cell* owner, const string& name, Term::Direction d ):
-    owner_((void*)owner),
+    Term::Term( Cell* owner, const string& name, Term::Direction dir ):
+    owner_(owner),
     name_(name),
-    direction_(d),
+    direction_(dir),
     type_(External),
     net_(),
     node_(this){
         owner->add(this);
     }
 
-    Term::Term( Instance* owner, const Term * Term ):
-    owner_((void*)owner),
-    name_(Term->getName()),
-    direction_(Term->getDirection()),
+    Term::Term( Instance* owner, const Term * term ):
+    owner_(owner),
+    name_(term->getName()),
+    direction_(term->getDirection()),
     type_(Internal),
     net_(),
     node_(this){
@@ -80,22 +80,18 @@ namespace Netlist {
             return Term::Unknown;
     }
 
-    Cell* Term::getOwnerCell() const{   
-        return (type_ == External) ? static_cast<Cell*>(owner_) : static_cast<Instance*>(owner_)->getCell(); 
-    }
-
     void Term::setNet( Net* net ){
-        if (net == NULL)
+        if (net == NULL){
             if (net->getCell()!=getOwnerCell()){
                 cerr<<"[ERROR: ]Term & Net de not belong to the same Cell."<<endl;
                 return;
             };
+        }   
         net_ = net;
         net->add(&node_);
     }
 
     void Term::setNet( const string& name ){
-        getOwnerCell()->getNet(name)->add(&node_);
         net_ = getOwnerCell()->getNet(name);    
     }
 

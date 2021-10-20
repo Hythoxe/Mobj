@@ -179,20 +179,18 @@ namespace Netlist {
     stream << indent++ << "<terms>\n";
     for ( vector<Term*>::const_iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm )
       (*iterm)->toXml( stream );
-
     stream << --indent << "</terms>\n";
 
     stream << indent++ << "<instances>\n";
     for ( vector<Instance*>::const_iterator iinst=instances_.begin() ; iinst != instances_.end() ; ++iinst )
       (*iinst)->toXml( stream );
-
     stream << --indent << "</instances>\n";
 
     stream << indent++ << "<nets>\n";
     for ( vector<Net*>::const_iterator inet=nets_.begin() ; inet != nets_.end() ; ++inet )
       (*inet)->toXml( stream );
-    
     stream << --indent << "</nets>" << endl;
+    
     stream << --indent <<"</cells>" << endl;
   }
 

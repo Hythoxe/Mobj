@@ -5,6 +5,7 @@
 #include "Indentation.h"
 #include "Node.h"
 #include "Point.h"
+#include "Instance.h"
 
 #pragma once
 
@@ -14,7 +15,6 @@ namespace Netlist{
     
     class Net;
     class Cell;
-    class Instance;
 
     class Term {
         public:
@@ -32,7 +32,7 @@ namespace Netlist{
             inline          Node *          getNode     ();
             inline          Net *           getNet      () const;
             inline          Cell *          getCell     () const;   
-                            Cell *          getOwnerCell() const;   
+            inline          Cell *          getOwnerCell() const;   
             inline          Instance *      getInstance () const;   
             inline          Direction       getDirection() const;
             inline          Point           getPosition () const;
@@ -60,6 +60,7 @@ namespace Netlist{
     inline Net*             Term::getNet()                    const { return net_; }
     inline Cell*            Term::getCell()                   const { return (type_== External ? static_cast<Cell*>(owner_) : NULL); }
     inline Instance*        Term::getInstance()               const { return (type_ == Internal ? static_cast<Instance*>(owner_) : NULL); }
+    inline Cell*            Term::getOwnerCell()              const { return type_ == External ? static_cast<Cell*>(owner_) : static_cast<Instance*>(owner_)->getCell(); }
     inline Term::Direction  Term::getDirection()              const { return direction_; }
     inline Point            Term::getPosition()               const { return node_.getPosition(); }
     inline Term::Type       Term::getType()                   const { return type_; }
