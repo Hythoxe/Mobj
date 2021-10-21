@@ -78,22 +78,22 @@ int main ( int argc, char* argv[] )
   Instance* fu_ha1  = new Instance ( fulladder, Cell::find("halfadder"), "ha_1" );
   Instance* fu_ha2  = new Instance ( fulladder, Cell::find("halfadder"), "ha_2" );
   Instance* fu_or2   = new Instance ( fulladder, Cell::find("or2")     , "or2_1");
-  fulladder->connect( "a"   , fu_a    );
-  fulladder->connect( "b"   , fu_b    );
-  fulladder->connect( "cin" , fu_cin  );
-  fulladder->connect( "sout", fu_sout );
-  fulladder->connect( "cout", fu_cout );
-  fu_ha1->connect( "a", fu_a );
-  fu_ha1->connect( "b", fu_b );
-  fu_ha1->connect( "sout", fu_sout_1 );
-  fu_ha1->connect( "cout", fu_carry_1);
-  fu_ha2->connect( "a", fu_cin );
-  fu_ha2->connect( "b", fu_sout_1 );
-  fu_ha2->connect( "sout", fu_sout );
-  fu_ha2->connect( "cout", fu_carry_2 );
-  fu_or2->connect( "i0", fu_carry_1 );
-  fu_or2->connect( "i1", fu_carry_2 );
-  fu_or2->connect(  "q", fu_cout );
+  fulladder->connect( "a"   , fu_a    );  //attribition du term a au a du fulladder
+  fulladder->connect( "b"   , fu_b    );  //attribition du term b au b du fulladder
+  fulladder->connect( "cin" , fu_cin  );  //attribition du term cin au cin du fulladder
+  fulladder->connect( "sout", fu_sout );  //attribition du term sout au sout du fulladder
+  fulladder->connect( "cout", fu_cout );  //attribition du term cout au cout du fulladder
+  fu_ha1->connect( "a", fu_a );           //connection de l'entrée a au a du ha1
+  fu_ha1->connect( "b", fu_b );           //connection de l'entrée b au b du ha1
+  fu_ha1->connect( "sout", fu_sout_1 );   //connection de la sortie sout du ha1 a la connecton intermediaire sout_1
+  fu_ha1->connect( "cout", fu_carry_1);   //connection de la sortie cout du ha1 a la connecton intermediaire carry_1
+  fu_ha2->connect( "a", fu_cin );         //connection de l'entrée cin au a du ha2
+  fu_ha2->connect( "b", fu_sout_1 );      //connection de la connecton intermediaire sout_1 au b du ha2
+  fu_ha2->connect( "sout", fu_sout );     //connection de la sorti sout au sout du ha2
+  fu_ha2->connect( "cout", fu_carry_2 );  //connection de la sortie cout du ha1 a la connecton intermediaire carry_2
+  fu_or2->connect( "i0", fu_carry_1 );    //connection de la connecton intermediaire carry_1 au i0 du or2
+  fu_or2->connect( "i1", fu_carry_2 );    //connection de la connecton intermediaire carry_2 au i1 du or2
+  fu_or2->connect(  "q", fu_cout );       //connection de la sorti cout au q du or2
   fulladder->toXml( cout );
 
   return 0;
