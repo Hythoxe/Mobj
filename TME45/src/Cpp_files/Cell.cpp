@@ -193,6 +193,4 @@ namespace Netlist {
     
     stream << --indent <<"</cells>" << endl;
   }
-
-
 }  // Netlist namespace.

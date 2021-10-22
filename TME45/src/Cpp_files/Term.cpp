@@ -15,10 +15,10 @@ namespace Netlist {
         owner->add(this);
     }
 
-    Term::Term( Instance* owner, const Term * term ):
+    Term::Term( Instance* owner, const Term * modelterm ):
     owner_(owner),
-    name_(term->getName()),
-    direction_(term->getDirection()),
+    name_(modelterm->getName()),
+    direction_(modelterm->getDirection()),
     type_(Internal),
     net_(),
     node_(this){

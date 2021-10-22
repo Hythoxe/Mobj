@@ -12,9 +12,8 @@ namespace Netlist {
     terms_(),
     position_(){
         if (model != NULL){
-            for(Term* iterm : model -> getTerms()){
+            for(Term* iterm : model -> getTerms())
                 terms_.push_back(new Term(this, iterm));
-            }
         }
         owner->add(this);    
     }

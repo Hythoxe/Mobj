@@ -77,12 +77,12 @@ int main ( int argc, char* argv[] )
   Net*      fu_carry_2 = new Net   ( fulladder, "carry_2", Term::Internal );
   Instance* fu_ha1  = new Instance ( fulladder, Cell::find("halfadder"), "ha_1" );
   Instance* fu_ha2  = new Instance ( fulladder, Cell::find("halfadder"), "ha_2" );
-  Instance* fu_or2   = new Instance ( fulladder, Cell::find("or2")     , "or2_1");
-  fulladder->connect( "a"   , fu_a    );  //attribition du term a au a du fulladder
-  fulladder->connect( "b"   , fu_b    );  //attribition du term b au b du fulladder
-  fulladder->connect( "cin" , fu_cin  );  //attribition du term cin au cin du fulladder
-  fulladder->connect( "sout", fu_sout );  //attribition du term sout au sout du fulladder
-  fulladder->connect( "cout", fu_cout );  //attribition du term cout au cout du fulladder
+  Instance* fu_or2  = new Instance ( fulladder, Cell::find("or2")     , "or2_1");
+  fulladder->connect( "a"   , fu_a    );  //connection du term a au a du fulladder
+  fulladder->connect( "b"   , fu_b    );  //connection du term b au b du fulladder
+  fulladder->connect( "cin" , fu_cin  );  //connection du term cin au cin du fulladder
+  fulladder->connect( "sout", fu_sout );  //connection du term sout au sout du fulladder
+  fulladder->connect( "cout", fu_cout );  //connection du term cout au cout du fulladder
   fu_ha1->connect( "a", fu_a );           //connection de l'entrée a au a du ha1
   fu_ha1->connect( "b", fu_b );           //connection de l'entrée b au b du ha1
   fu_ha1->connect( "sout", fu_sout_1 );   //connection de la sortie sout du ha1 a la connecton intermediaire sout_1
