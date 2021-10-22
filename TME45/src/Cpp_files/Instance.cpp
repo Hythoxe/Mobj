@@ -13,9 +13,11 @@ namespace Netlist {
     name_(name),
     terms_(),
     position_(){
-        const vector<Term*>& terms = masterCell_->getTerms();
-        for(vector<Term*>::const_iterator iterm=terms.begin(); iterm != terms.end(); ++iterm)
-            new Term(this, *iterm);
+        if (model != NULL){
+            for(Term* iterm : model -> getTerms()){
+                terms_.push_back(new Term(this, iterm));
+            }
+        }
         owner->add(this);    
     }
   
@@ -23,7 +25,7 @@ namespace Netlist {
         owner_->remove(this);
     }
 
-    Term* Instance::getTerm( const string& name ) const{
+    Term* Instance::getTerm( const string& name ) const{//fonction identique a la fonction dans Cell
         for (vector<Term*>::const_iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm) {
             if(*iterm != NULL){
                 if((*iterm)->getName() == name)  return *iterm;  
@@ -33,15 +35,15 @@ namespace Netlist {
         return NULL;
     }
 
-    bool Instance::connect( const std::string& name, Net * net ){
+    bool Instance::connect( const std::string& name, Net * net ){//fonction identique a la fonction dans Cell
         Term* term = getTerm( name );
-        if (term == NULL) 
-            return false;
+        if (term == NULL) return false;
+    
         term->setNet( net );
         return true;
     }
 
-    void Instance::add( Term * term ){
+    void Instance::add( Term * term ){//fonction identique a la fonction dans Cell
         if (getTerm(term->getName())){
             cerr << "[ERROR] Attemp to add duplicated terminal <" << term->getName() << ">." << endl;
             exit( 1 );
@@ -49,7 +51,7 @@ namespace Netlist {
         terms_.push_back( term );
     }
 
-    void Instance::remove( Term * term ){
+    void Instance::remove( Term * term ){//fonction identique a la fonction dans Cell
         for (vector<Term*>::iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm) {
             if(*iterm != NULL){
                 if (*iterm == term) 
