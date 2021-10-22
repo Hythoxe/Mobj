@@ -29,7 +29,7 @@ namespace Netlist{
                             void                add             (Term*);
                             void                remove          (Term*);
             inline          void                setPosition     (const Point&);
-                            void                setPosition     (int x, int y);
+            inline          void                setPosition     (int x, int y);
                             void                toXml           (ostream&);
 
         private:
@@ -40,11 +40,12 @@ namespace Netlist{
             Point           position_;
     };
     
-    inline const string&            Instance::getName()                     const { return name_; }
-    inline Cell*                    Instance::getMasterCell()               const { return masterCell_; }
-    inline Cell*                    Instance::getCell()                     const { return owner_; }
-    inline const vector<Term*>&     Instance::getTerms()                    const { return terms_; }
-    inline Point                    Instance::getPosition()                 const { return position_; }
-    inline void                     Instance::setPosition( const Point& p )       { setPosition(p.getX(), p.getY()); }
+    inline const string&        Instance::getName()                     const { return name_; }
+    inline Cell*                Instance::getMasterCell()               const { return masterCell_; }
+    inline Cell*                Instance::getCell()                     const { return owner_; }
+    inline const vector<Term*>& Instance::getTerms()                    const { return terms_; }
+    inline Point                Instance::getPosition()                 const { return position_; }
+    inline void                 Instance::setPosition( const Point& p )       { setPosition(p.getX(), p.getY()); }
+    inline void                 Instance::setPosition( int x , int y )        { position_ = Point(x,y); }
 }
 #endif // NETLIST_INSTANCE_H

@@ -1,7 +1,4 @@
-#include  <cstdlib>
-#include  "../H_files/Instance.h"
 #include  "../H_files/Term.h"
-#include  "../H_files/Cell.h"
 #include  "../H_files/Net.h"
 
 namespace Netlist {
@@ -35,9 +32,9 @@ namespace Netlist {
             static_cast<Instance*>(owner_)->remove(this);
     }
 
-    string Term::toString( Term::Type t ){
+    string Term::toString( Term::Type type ){
         string s;
-        switch (t){
+        switch (type){
             case 1: s = "Internal";
             break;
             case 2: s = "External"; 
@@ -46,9 +43,9 @@ namespace Netlist {
         return s;
     }
 
-    string Term::toString( Term::Direction d ){
+    string Term::toString( Term::Direction dir ){
         string s;
-        switch (d){
+        switch (dir){
             case 1: s = "In";
             break;
             case 2: s = "Out"; 
@@ -80,19 +77,9 @@ namespace Netlist {
             return Term::Unknown;
     }
 
-    void Term::setNet( Net* net ){
-        if (net == NULL){
-            if (net->getCell()!=getOwnerCell()){
-                cerr<<"[ERROR: ]Term & Net de not belong to the same Cell."<<endl;
-                return;
-            };
-        }   
+    void Term::setNet( Net* net ){ 
         net_ = net;
         net->add(&node_);
-    }
-
-    void Term::setNet( const string& name ){
-        net_ = getOwnerCell()->getNet(name);    
     }
 
     void Term::toXml( ostream& stream ){

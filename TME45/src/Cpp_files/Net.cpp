@@ -1,4 +1,3 @@
-#include  <cstdlib>
 #include  "../H_files/Net.h"
 #include  "../H_files/Cell.h"
 #include  "../H_files/Node.h"
@@ -20,13 +19,13 @@ namespace Netlist {
         owner_->remove(this);
     }
 
-    void Net::add(Node* node){//fonction identique a la fonction dans Cell
+    void Net::add(Node* node){
         size_t size = getFreeNodeId();
         nodes_.push_back(node);
         node->setId(size);
     }
 
-    bool Net::remove(Node* node){//fonction identique a la fonction dans Cell
+    bool Net::remove(Node* node){
         for ( vector<Node*>::iterator inode=nodes_.begin() ; inode != nodes_.end() ; ++inode ) {
             if(*inode != NULL){
                 if (*inode == node) nodes_.erase( inode );

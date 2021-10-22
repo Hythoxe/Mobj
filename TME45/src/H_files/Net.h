@@ -14,7 +14,6 @@ namespace Netlist{
 
     class Cell;
     class Node;
-    class Line;
 
     class Net{
         public:

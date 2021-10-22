@@ -1,7 +1,5 @@
 #include  "../H_files/Instance.h"
 #include  "../H_files/Term.h"
-#include  "../H_files/Cell.h"
-#include  "../H_files/Net.h"
 
 namespace Netlist {
 
@@ -25,17 +23,16 @@ namespace Netlist {
         owner_->remove(this);
     }
 
-    Term* Instance::getTerm( const string& name ) const{//fonction identique a la fonction dans Cell
+    Term* Instance::getTerm( const string& name ) const{
         for (vector<Term*>::const_iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm) {
             if(*iterm != NULL){
                 if((*iterm)->getName() == name)  return *iterm;  
             }
-            
         }
         return NULL;
     }
 
-    bool Instance::connect( const std::string& name, Net * net ){//fonction identique a la fonction dans Cell
+    bool Instance::connect( const std::string& name, Net * net ){
         Term* term = getTerm( name );
         if (term == NULL) return false;
     
@@ -43,7 +40,7 @@ namespace Netlist {
         return true;
     }
 
-    void Instance::add( Term * term ){//fonction identique a la fonction dans Cell
+    void Instance::add( Term * term ){
         if (getTerm(term->getName())){
             cerr << "[ERROR] Attemp to add duplicated terminal <" << term->getName() << ">." << endl;
             exit( 1 );
@@ -51,17 +48,12 @@ namespace Netlist {
         terms_.push_back( term );
     }
 
-    void Instance::remove( Term * term ){//fonction identique a la fonction dans Cell
+    void Instance::remove( Term * term ){
         for (vector<Term*>::iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm) {
             if(*iterm != NULL){
-                if (*iterm == term) 
-                terms_.erase(iterm);   
+                if (*iterm == term) terms_.erase(iterm);   
             }
         }
-    }
-    
-    void Instance::setPosition( int x , int y ){
-        position_ = Point(x,y);
     }
 
     void Instance::toXml( ostream& stream ){

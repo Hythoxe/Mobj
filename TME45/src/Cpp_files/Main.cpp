@@ -58,7 +58,7 @@ int main ( int argc, char* argv[] )
   ha_and2->connect( "i0", ha_a    );
   ha_and2->connect( "i1", ha_b    );
   ha_and2->connect(  "q", ha_cout );
-  halfadder->toXml( cout );
+  //halfadder->toXml( cout );
 
   cout << "\nConstruction du modele <fulladder>." << endl;
   Cell* fulladder = new Cell ( "fulladder" );
