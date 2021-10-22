@@ -21,10 +21,6 @@ namespace Netlist {
     }
 
     void Net::add(Node* node){//fonction identique a la fonction dans Cell
-        if (getTerm(node->getName())) {
-            cerr << "[ERROR] Attemp to add duplicated terminal <" << node->getName() << ">." << endl;
-            exit( 1 );
-        }
         size_t size = getFreeNodeId();
         nodes_.push_back(node);
         node->setId(size);
