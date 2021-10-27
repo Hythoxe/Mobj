@@ -5,7 +5,7 @@
 
 #include <string>
 #include <vector>
-#include  <libxml/xmlreader.h>
+#include <libxml/xmlreader.h>
 #include "Indentation.h"
 
 #pragma once
@@ -44,7 +44,7 @@ namespace Netlist {
                    void                    save              () const;
                    void                    toXml             ( std::ostream& ) const;
                    Cell*                   fromXml           ( xmlTextReaderPtr );
-                   
+
     private:
       static  std::vector<Cell*>      cells_;
               std::string             name_;

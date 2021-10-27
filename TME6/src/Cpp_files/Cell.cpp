@@ -1,6 +1,7 @@
 // -*- explicit-buffer-name: "Cell.cpp<M1-MOBJ/4-5>" -*-
 
 #include  <cstdlib>
+#include  <fstream>
 #include  <libxml/xmlreader.h>
 #include  "../H_files/Cell.h"
 #include  "../H_files/Term.h"
@@ -175,7 +176,7 @@ namespace Netlist {
 
   Cell* Cell::load ( const string& cellName )
   {
-    string           cellFile = "../src/work/cells/" + cellName + ".xml";
+    string           cellFile = "./src/work/cells/" + cellName + ".xml";
     xmlTextReaderPtr reader;
 
     reader = xmlNewTextReaderFilename( cellFile.c_str() );
@@ -281,7 +282,7 @@ namespace Netlist {
             }
           }
           break;
-        case BeginTerms:
+        /*case BeginTerms:
           if ( (nodeName == termsTag) and (xmlTextReaderNodeType(reader) == XML_READER_TYPE_ELEMENT) ) {
             state = EndTerms;
             continue;
@@ -293,6 +294,7 @@ namespace Netlist {
             continue;
           } else {
             if (Term::fromXml(cell,reader)) continue;
+            continue
           }
           break;
         case BeginInstances:
@@ -322,7 +324,7 @@ namespace Netlist {
           } else {
             if (Net::fromXml(cell,reader)) continue;
           }
-          break;
+          break;*/
         case EndCell:
           if ( (nodeName == cellTag) and (xmlTextReaderNodeType(reader) == XML_READER_TYPE_END_ELEMENT) ) {
             continue;

@@ -1,9 +1,6 @@
-#include  <cstdlib>
-#include  <libxml/xmlreader.h>
 #include  "../H_files/Net.h"
 #include  "../H_files/Cell.h"
 #include  "../H_files/Node.h"
-#include  "../H_files/XmlUtil.h"
 
 namespace Netlist {
 
@@ -29,15 +26,11 @@ namespace Netlist {
     }
 
     bool Net::remove(Node* node){
-        if (node){
-            for (vector<Node* > ::iterator inode = nodes_.begin() ; inode != nodes_.end() ; ++inode){
-                if (*inode == node){
-                    nodes_.erase(inode);
-                    return true;
-                } 
+        for ( vector<Node*>::iterator inode=nodes_.begin() ; inode != nodes_.end() ; ++inode ) {
+            if(*inode != NULL){
+                if (*inode == node) nodes_.erase( inode );
             }
         }
-        return false;
     }
 
     size_t Net::getFreeNodeId() const{
@@ -50,7 +43,7 @@ namespace Netlist {
 
     void Net::toXml( ostream& stream ){
         stream << indent++ << "<net name=\"" << name_ 
-                           <<"\" type=\""    << Term::toString(type_) 
+                           << "\" type=\""   << Term::toString(type_) 
                            << "\"/>\n";
         for (vector<Node*>::iterator inode=nodes_.begin() ; inode != nodes_.end() ; ++inode) {
             if(*inode != NULL)
@@ -58,7 +51,4 @@ namespace Netlist {
         }
         stream << --indent << "</net>\n";
     }
-
-    Net* Net::fromXml ( Cell* owner, xmlTextReaderPtr reader ){}
-
 }

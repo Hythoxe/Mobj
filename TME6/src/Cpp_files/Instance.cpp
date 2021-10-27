@@ -1,9 +1,6 @@
 #include  <libxml/xmlreader.h>
 #include  "../H_files/Instance.h"
 #include  "../H_files/Term.h"
-#include  "../H_files/Cell.h"
-#include  "../H_files/Net.h"
-#include  "../H_files/XmlUtil.h"
 
 namespace Netlist {
 
@@ -15,9 +12,10 @@ namespace Netlist {
     name_(name),
     terms_(),
     position_(){
-        const vector<Term*>& terms = masterCell_->getTerms();
-        for(vector<Term*>::const_iterator iterm=terms.begin(); iterm != terms.end(); ++iterm)
-            new Term(this, *iterm);
+        if (model != NULL){
+            for(Term* iterm : model -> getTerms())
+                terms_.push_back(new Term(this, iterm));
+        }
         owner->add(this);    
     }
   
@@ -30,15 +28,14 @@ namespace Netlist {
             if(*iterm != NULL){
                 if((*iterm)->getName() == name)  return *iterm;  
             }
-            
         }
         return NULL;
     }
 
     bool Instance::connect( const std::string& name, Net * net ){
         Term* term = getTerm( name );
-        if (term == NULL) 
-            return false;
+        if (term == NULL) return false;
+    
         term->setNet( net );
         return true;
     }
@@ -54,14 +51,9 @@ namespace Netlist {
     void Instance::remove( Term * term ){
         for (vector<Term*>::iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm) {
             if(*iterm != NULL){
-                if (*iterm == term) 
-                terms_.erase(iterm);   
+                if (*iterm == term) terms_.erase(iterm);   
             }
         }
-    }
-    
-    void Instance::setPosition( int x , int y ){
-        position_ = Point(x,y);
     }
 
     void Instance::toXml( ostream& stream ){

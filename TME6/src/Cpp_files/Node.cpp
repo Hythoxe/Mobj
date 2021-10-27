@@ -7,7 +7,6 @@
 #include  "../H_files/Net.h"
 #include  "../H_files/Instance.h"
 #include  "../H_files/Cell.h"
-#include  "../H_files/XmlUtil.h"
 
 namespace Netlist {
 
@@ -34,7 +33,7 @@ namespace Netlist {
 
 
 // Node::toXml() Ã  Ã©crire ici.
-  void Node::toXml ( ostream& stream ) const{
+  void  Node::toXml ( ostream& stream ) const{
     if (term_->isInternal()) {
       stream << indent << "<node term=\""  << term_->getName()
                        << "\" instance=\"" << term_->getInstance()->getName()

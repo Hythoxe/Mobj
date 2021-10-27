@@ -1,29 +1,25 @@
-#include  <cstdlib>
 #include  <libxml/xmlreader.h>
-#include  "../H_files/Instance.h"
 #include  "../H_files/Term.h"
-#include  "../H_files/Cell.h"
 #include  "../H_files/Net.h"
-#include  "../H_files/XmlUtil.h"
 
 namespace Netlist {
 
     using namespace std;
 
-    Term::Term( Cell* owner, const string& name, Term::Direction d ):
-    owner_((void*)owner),
+    Term::Term( Cell* owner, const string& name, Term::Direction dir ):
+    owner_(owner),
     name_(name),
-    direction_(d),
+    direction_(dir),
     type_(External),
     net_(),
     node_(this){
         owner->add(this);
     }
 
-    Term::Term( Instance* owner, const Term * Term ):
-    owner_((void*)owner),
-    name_(Term->getName()),
-    direction_(Term->getDirection()),
+    Term::Term( Instance* owner, const Term * modelterm ):
+    owner_(owner),
+    name_(modelterm->getName()),
+    direction_(modelterm->getDirection()),
     type_(Internal),
     net_(),
     node_(this){
@@ -37,9 +33,9 @@ namespace Netlist {
             static_cast<Instance*>(owner_)->remove(this);
     }
 
-    string Term::toString( Term::Type t ){
+    string Term::toString( Term::Type type ){
         string s;
-        switch (t){
+        switch (type){
             case 1: s = "Internal";
             break;
             case 2: s = "External"; 
@@ -48,9 +44,9 @@ namespace Netlist {
         return s;
     }
 
-    string Term::toString( Term::Direction d ){
+    string Term::toString( Term::Direction dir ){
         string s;
-        switch (d){
+        switch (dir){
             case 1: s = "In";
             break;
             case 2: s = "Out"; 
@@ -82,23 +78,9 @@ namespace Netlist {
             return Term::Unknown;
     }
 
-    Cell* Term::getOwnerCell() const{   
-        return (type_ == External) ? static_cast<Cell*>(owner_) : static_cast<Instance*>(owner_)->getCell(); 
-    }
-
-    void Term::setNet( Net* net ){
-        if (net == NULL)
-            if (net->getCell()!=getOwnerCell()){
-                cerr<<"[ERROR: ]Term & Net de not belong to the same Cell."<<endl;
-                return;
-            };
+    void Term::setNet( Net* net ){ 
         net_ = net;
         net->add(&node_);
-    }
-
-    void Term::setNet( const string& name ){
-        getOwnerCell()->getNet(name)->add(&node_);
-        net_ = getOwnerCell()->getNet(name);    
     }
 
     void Term::toXml( ostream& stream ){
@@ -108,5 +90,5 @@ namespace Netlist {
     }
 
     Term* Term::fromXml ( Cell* owner, xmlTextReaderPtr reader ){}
-
+    
 }

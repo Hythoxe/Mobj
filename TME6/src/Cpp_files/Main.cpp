@@ -13,28 +13,28 @@ using namespace std;
 using namespace Netlist;
 
 
-/*int main ( int argc, char* argv[] )
+int main ( int argc, char* argv[] )
 {
-  cout << "\nConstruction du modele <and2>." << endl;
+  /*cout << "\nConstruction du modele <and2>." << endl;
   Cell* and2 = new Cell ( "and2" );
   new Term( and2, "i0", Term::In  );
   new Term( and2, "i1", Term::In  );
   new Term( and2,  "q", Term::Out );
-  and2->toXml( cout );
+  //and2->toXml( cout );
 
   cout << "\nConstruction du modele <or2>." << endl;
   Cell* or2 = new Cell ( "or2" );
   new Term( or2, "i0", Term::In  );
   new Term( or2, "i1", Term::In  );
   new Term( or2,  "q", Term::Out );
-  or2->toXml( cout );
+  //or2->toXml( cout );
 
   cout << "\nConstruction du modele <xor2>." << endl;
   Cell* xor2 = new Cell ( "xor2" );
   new Term( xor2, "i0", Term::In  );
   new Term( xor2, "i1", Term::In  );
   new Term( xor2,  "q", Term::Out );
-  xor2->toXml( cout );
+  //xor2->toXml( cout );
 
   cout << "\nConstruction du modele <halfadder>." << endl;
   Cell* halfadder = new Cell ( "halfadder" );
@@ -58,14 +58,46 @@ using namespace Netlist;
   ha_and2->connect( "i0", ha_a    );
   ha_and2->connect( "i1", ha_b    );
   ha_and2->connect(  "q", ha_cout );
-  halfadder->toXml( cout );
+  //halfadder->toXml( cout );
 
-  return 0;
-  
-}*/
+  cout << "\nConstruction du modele <fulladder>." << endl;
+  Cell* fulladder = new Cell ( "fulladder" );
+  new Term( fulladder, "a"   , Term::In  );
+  new Term( fulladder, "b"   , Term::In  );
+  new Term( fulladder, "cin" , Term::In  );
+  new Term( fulladder, "sout", Term::Out );
+  new Term( fulladder, "cout", Term::Out );
+  Net*      fu_a    = new Net      ( fulladder, "a"   , Term::External );
+  Net*      fu_b    = new Net      ( fulladder, "b"   , Term::External );
+  Net*      fu_cin  = new Net      ( fulladder, "cin" , Term::External );
+  Net*      fu_sout = new Net      ( fulladder, "sout", Term::External );
+  Net*      fu_cout = new Net      ( fulladder, "cout", Term::External );
+  Net*      fu_sout_1 = new Net    ( fulladder, "sout_1", Term::Internal );
+  Net*      fu_carry_1 = new Net   ( fulladder, "carry_1", Term::Internal );
+  Net*      fu_carry_2 = new Net   ( fulladder, "carry_2", Term::Internal );
+  Instance* fu_ha1  = new Instance ( fulladder, Cell::find("halfadder"), "ha_1" );
+  Instance* fu_ha2  = new Instance ( fulladder, Cell::find("halfadder"), "ha_2" );
+  Instance* fu_or2  = new Instance ( fulladder, Cell::find("or2")     , "or2_1");
+  fulladder->connect( "a"   , fu_a    );  //connection du term a au a du fulladder
+  fulladder->connect( "b"   , fu_b    );  //connection du term b au b du fulladder
+  fulladder->connect( "cin" , fu_cin  );  //connection du term cin au cin du fulladder
+  fulladder->connect( "sout", fu_sout );  //connection du term sout au sout du fulladder
+  fulladder->connect( "cout", fu_cout );  //connection du term cout au cout du fulladder
+  fu_ha1->connect( "a", fu_a );           //connection de l'entrée a au a du ha1
+  fu_ha1->connect( "b", fu_b );           //connection de l'entrée b au b du ha1
+  fu_ha1->connect( "sout", fu_sout_1 );   //connection de la sortie sout du ha1 a la connecton intermediaire sout_1
+  fu_ha1->connect( "cout", fu_carry_1);   //connection de la sortie cout du ha1 a la connecton intermediaire carry_1
+  fu_ha2->connect( "a", fu_cin );         //connection de l'entrée cin au a du ha2
+  fu_ha2->connect( "b", fu_sout_1 );      //connection de la connecton intermediaire sout_1 au b du ha2
+  fu_ha2->connect( "sout", fu_sout );     //connection de la sorti sout au sout du ha2
+  fu_ha2->connect( "cout", fu_carry_2 );  //connection de la sortie cout du ha1 a la connecton intermediaire carry_2
+  fu_or2->connect( "i0", fu_carry_1 );    //connection de la connecton intermediaire carry_1 au i0 du or2
+  fu_or2->connect( "i1", fu_carry_2 );    //connection de la connecton intermediaire carry_2 au i1 du or2
+  fu_or2->connect(  "q", fu_cout );       //connection de la sorti cout au q du or2
+  fulladder->toXml( cout );
 
-int main ( int argc, char* argv[] )
-{
+  return 0;*/
+
   cout << "Chargement des modeles:" << endl;
   cout << "- <and2> ..." << endl;
   Cell::load( "and2" );
@@ -83,4 +115,5 @@ int main ( int argc, char* argv[] )
   halfadder->toXml( cout );
 
   return 0;
+
 }

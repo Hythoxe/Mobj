@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include <libxml/xmlreader.h>
 #include "Indentation.h"
 #include "Term.h"
 
@@ -15,7 +14,6 @@ namespace Netlist{
 
     class Cell;
     class Node;
-    class Line;
 
     class Net{
         public:
@@ -30,7 +28,6 @@ namespace Netlist{
                             void                add           ( Node* );
                             bool                remove        ( Node* );
                             void                toXml         ( ostream& );
-                            Net*                fromXml       ( Cell*, xmlTextReaderPtr );
         private:
             Cell*           owner_;
             string          name_;
