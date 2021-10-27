@@ -282,7 +282,7 @@ namespace Netlist {
             }
           }
           break;
-        /*case BeginTerms:
+        case BeginTerms:
           if ( (nodeName == termsTag) and (xmlTextReaderNodeType(reader) == XML_READER_TYPE_ELEMENT) ) {
             state = EndTerms;
             continue;
@@ -294,7 +294,6 @@ namespace Netlist {
             continue;
           } else {
             if (Term::fromXml(cell,reader)) continue;
-            continue
           }
           break;
         case BeginInstances:
@@ -324,7 +323,7 @@ namespace Netlist {
           } else {
             if (Net::fromXml(cell,reader)) continue;
           }
-          break;*/
+          break;
         case EndCell:
           if ( (nodeName == cellTag) and (xmlTextReaderNodeType(reader) == XML_READER_TYPE_END_ELEMENT) ) {
             continue;
@@ -341,5 +340,6 @@ namespace Netlist {
 
     return cell;
   }
+
 
 }  // Netlist namespace.

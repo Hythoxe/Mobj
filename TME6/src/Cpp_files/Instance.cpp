@@ -1,6 +1,8 @@
-#include  <libxml/xmlreader.h>
-#include  "../H_files/Instance.h"
-#include  "../H_files/Term.h"
+#include <libxml/xmlreader.h>
+#include "../H_files/Instance.h"
+#include "../H_files/Term.h"
+#include "../H_files/XmlUtil.h"
+
 
 namespace Netlist {
 
@@ -12,14 +14,17 @@ namespace Netlist {
     name_(name),
     terms_(),
     position_(){
-        if (model != NULL){
+        /*if (model != NULL){
             for(Term* iterm : model -> getTerms())
                 terms_.push_back(new Term(this, iterm));
-        }
+        }*/
+        for (Term* t : masterCell_->getTerms())
+           new Term(this,t);
         owner->add(this);    
     }
   
     Instance::~Instance(){
+        for (Term* t : terms_) delete t;
         owner_->remove(this);
     }
 
@@ -59,10 +64,16 @@ namespace Netlist {
     void Instance::toXml( ostream& stream ){
         stream << indent << "<instance name=\"" << name_ 
                          << "\" mastercell=\""  << masterCell_->getName()
-                         << "\" x=\""           << position_.getX() 
-                         << "\" y=\""           << position_.getY() << "\"/>\n";
+                         << "\"/>\n";
     }
 
-    Instance* Instance::fromXml ( Cell* owner, xmlTextReaderPtr reader ){}
+    Instance* Instance::fromXml ( Cell* owner, xmlTextReaderPtr reader ){
+        string instanceName     = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"name"));
+        string masterCellName   = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"mastercell"));
+
+        Cell* masterCell = Cell::find(masterCellName);
+        Instance* instance = new Instance( owner, masterCell, instanceName );
+        return instance;
+    }
 
 }

@@ -28,6 +28,7 @@ namespace Netlist{
                             void                add           ( Node* );
                             bool                remove        ( Node* );
                             void                toXml         ( ostream& );
+                            Net*                fromXml       ( Cell*, xmlTextReaderPtr );
         private:
             Cell*           owner_;
             string          name_;

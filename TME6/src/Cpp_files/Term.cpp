@@ -1,6 +1,8 @@
-#include  <libxml/xmlreader.h>
-#include  "../H_files/Term.h"
-#include  "../H_files/Net.h"
+#include <cstdlib>
+#include <libxml/xmlreader.h>
+#include "../H_files/Term.h"
+#include "../H_files/Net.h"
+#include "../H_files/XmlUtil.h"
 
 namespace Netlist {
 
@@ -86,9 +88,22 @@ namespace Netlist {
     void Term::toXml( ostream& stream ){
         stream << indent << "<term name=\""   << name_ 
                          << "\" direction=\"" << toString(direction_) 
+                         << "\" x=\""         << this->getPosition().getX() 
+                         << "\" y=\""         << this->getPosition().getY() 
                          << "\"/>\n";
     }
 
-    Term* Term::fromXml ( Cell* owner, xmlTextReaderPtr reader ){}
-    
+    Term* Term::fromXml ( Cell* owner, xmlTextReaderPtr reader ){
+        
+        string termName = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"name"));
+        string termDir  = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"direction"));
+
+        int x = atoi(xmlCharToString( xmlTextReaderGetAttribute( reader,(const xmlChar*) "x")).c_str());
+        int y = atoi(xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"y")).c_str());
+        
+        Term* term = new Term( owner, termName, toDirection(termDir) );
+        term->Term::setPosition(x,y);
+        return term;
+
+    }
 }
