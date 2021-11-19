@@ -80,6 +80,13 @@ namespace Netlist {
             return Term::Unknown;
     }
 
+    Term::Type Term::toType( string s ){
+        if(s == "External")
+            return Term::External;
+        else
+            return Term::Internal;
+    }
+
     void Term::setNet( Net* net ){ 
         net_ = net;
         net->add(&node_);
@@ -94,6 +101,7 @@ namespace Netlist {
     }
 
     Term* Term::fromXml ( Cell* owner, xmlTextReaderPtr reader ){
+        const xmlChar* termTag = xmlTextReaderConstString( reader, (const xmlChar*)"term" );
         
         string termName = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"name"));
         string termDir  = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"direction"));
@@ -101,9 +109,36 @@ namespace Netlist {
         int x = atoi(xmlCharToString( xmlTextReaderGetAttribute( reader,(const xmlChar*) "x")).c_str());
         int y = atoi(xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"y")).c_str());
         
-        Term* term = new Term( owner, termName, toDirection(termDir) );
+        Term* term = NULL
+        term = new Term( owner, termName, toDirection(termDir) );
         term->Term::setPosition(x,y);
-        return term;
 
+        while ( true ) {
+            int status = xmlTextReaderRead(reader);
+            if (status != 1) {
+                if (status != 0) {
+                cerr << "[ERROR] Term::fromXml(): Unexpected termination of the XML parser." << endl;
+                }
+                break;
+            }
+
+            switch ( xmlTextReaderNodeType(reader) ) {
+                case XML_READER_TYPE_COMMENT:
+                case XML_READER_TYPE_WHITESPACE:
+                case XML_READER_TYPE_SIGNIFICANT_WHITESPACE:
+                continue;
+            }
+
+            const xmlChar* nodeName = xmlTextReaderConstLocalName( reader );
+            
+            if (Term::fromXml(owner, reader)) continue;
+            
+            if ( (nodeName == termTag) and (xmlTextReaderNodeType(reader) == XML_READER_TYPE_END_ELEMENT) )
+                continue;
+
+            else cerr << "[ERROR] Term::fromXml(): Unknown or misplaced tag <" << termName
+                      << "> (line:" << xmlTextReaderGetParserLineNumber(reader) << ")." << endl;
+        }
+        return term;
     }
 }

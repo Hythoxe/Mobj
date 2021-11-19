@@ -68,11 +68,40 @@ namespace Netlist {
     }
 
     Instance* Instance::fromXml ( Cell* owner, xmlTextReaderPtr reader ){
+        const xmlChar* instanceTag = xmlTextReaderConstString( reader, (const xmlChar*)"instance" );
+        
         string instanceName     = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"name"));
         string masterCellName   = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"mastercell"));
 
         Cell* masterCell = Cell::find(masterCellName);
         Instance* instance = new Instance( owner, masterCell, instanceName );
+
+        while ( true ) {
+            int status = xmlTextReaderRead(reader);
+            if (status != 1) {
+                if (status != 0) {
+                cerr << "[ERROR] Instance::fromXml(): Unexpected termination of the XML parser." << endl;
+                }
+                break;
+            }
+
+            switch ( xmlTextReaderNodeType(reader) ) {
+                case XML_READER_TYPE_COMMENT:
+                case XML_READER_TYPE_WHITESPACE:
+                case XML_READER_TYPE_SIGNIFICANT_WHITESPACE:
+                continue;
+            }
+
+            const xmlChar* nodeName = xmlTextReaderConstLocalName( reader );
+            
+            if (Instance::fromXml(owner, reader)) continue;
+            
+            if ( (nodeName == instanceTag) and (xmlTextReaderNodeType(reader) == XML_READER_TYPE_END_ELEMENT) )
+                continue;
+
+            else cerr << "[ERROR] Instance::fromXml(): Unknown or misplaced tag <" << instanceName
+                      << "> (line:" << xmlTextReaderGetParserLineNumber(reader) << ")." << endl;
+        }
         return instance;
     }
 

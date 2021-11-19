@@ -4,18 +4,20 @@
 #include <sstream>
 #include <iostream>
 #include <memory>
+#include <libxml/xmlreader.h>
 using namespace std;
 
 #include "../H_files/Term.h"
 #include "../H_files/Net.h"
 #include "../H_files/Instance.h"
 #include "../H_files/Cell.h"
+#include "../H_files/XmlUtil.h"
 using namespace Netlist;
 
 
-int main ( int argc, char* argv[] )
+/*int main ( int argc, char* argv[] )
 {
-  /*cout << "\nConstruction du modele <and2>." << endl;
+  cout << "\nConstruction du modele <and2>." << endl;
   Cell* and2 = new Cell ( "and2" );
   new Term( and2, "i0", Term::In  );
   new Term( and2, "i1", Term::In  );
@@ -96,8 +98,12 @@ int main ( int argc, char* argv[] )
   fu_or2->connect(  "q", fu_cout );       //connection de la sorti cout au q du or2
   fulladder->toXml( cout );
 
-  return 0;*/
+  return 0;
 
+}*/
+
+int main ( int argc, char* argv[] )
+{
   cout << "Chargement des modeles:" << endl;
   cout << "- <and2> ..." << endl;
   Cell::load( "and2" );
@@ -115,5 +121,4 @@ int main ( int argc, char* argv[] )
   halfadder->toXml( cout );
 
   return 0;
-
 }

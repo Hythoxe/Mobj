@@ -27,6 +27,7 @@ namespace Netlist{
             static          string          toString    ( Type );
             static          string          toString    ( Direction );
             static          Direction       toDirection ( string );
+            static          Type            toType      ( string );
             inline          bool            isInternal  () const;
             inline          bool            isExternal  () const;
             inline const    string&         getName     () const;
