@@ -45,7 +45,7 @@ namespace Netlist{
             inline          void            setPosition ( const Point& );
             inline          void            setPosition ( int x, int y );
                             void            toXml       ( ostream& );
-                            Term*           fromXml     ( Cell*, xmlTextReaderPtr );
+                   static   Term*           fromXml     ( Cell*, xmlTextReaderPtr );
         private:
             void *          owner_;
             string          name_;

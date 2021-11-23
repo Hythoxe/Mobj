@@ -17,17 +17,18 @@ namespace Netlist{
 
     class Net{
         public:
-                                                Net( Cell *, const string&, Term::Type );
-                                                ~Net();
-            inline          Cell*               getCell       () const;
-            inline const    string&             getName       () const;
-            inline          unsigned int        getId         () const;
-            inline          Term::Type          getType       () const;
-            inline const    vector<Node*>&      getNodes      () const;
-                            size_t              getFreeNodeId () const;
-                            void                add           ( Node* );
-                            bool                remove        ( Node* );
-                            void                toXml         ( ostream& );
+                                            Net( Cell *, const string&, Term::Type );
+                                            ~Net();
+            inline          Cell*           getCell       () const;
+            inline const    string&         getName       () const;
+            inline          unsigned int    getId         () const;
+            inline          Term::Type      getType       () const;
+            inline const    vector<Node*>&  getNodes      () const;
+                            size_t          getFreeNodeId () const;
+                            void            add           ( Node* );
+                            bool            remove        ( Node* );
+                            void            toXml         ( ostream& );
+                            
         private:
             Cell*           owner_;
             string          name_;
@@ -35,7 +36,6 @@ namespace Netlist{
             Term::Type      type_;
             vector<Node*>   nodes_;
     };
-
 
     inline Cell*                Net::getCell()  const{ return owner_; }
     inline const string&        Net::getName()  const{ return name_; }

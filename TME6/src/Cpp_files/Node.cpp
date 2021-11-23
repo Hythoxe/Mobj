@@ -7,6 +7,7 @@
 #include  "../H_files/Net.h"
 #include  "../H_files/Instance.h"
 #include  "../H_files/Cell.h"
+#include  "../H_files/XmlUtil.h"
 
 namespace Netlist {
 
@@ -47,6 +48,35 @@ namespace Netlist {
            << "\"/>\n";
   }
 
-  bool Node::fromXml ( Net* owner, xmlTextReaderPtr reader ){}
+  bool Node::fromXml ( Net* owner, xmlTextReaderPtr reader ){
+    string instanceName = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"instance"));
+    string termName     = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"term"));
+    
+    //int x = atoi(xmlCharToString( xmlTextReaderGetAttribute( reader,(const xmlChar*) "x")).c_str());
+    //int y = atoi(xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"y")).c_str());
+    int id = atoi(xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"id")).c_str());
+
+    Term* term = NULL;
+    Instance* instance = NULL;
+
+    if (not instanceName.empty()){
+      instance = owner->getCell()->getInstance(instanceName);
+      if (not instance)
+        return false;
+      term = instance->getTerm( termName );
+      if (not term)
+        return false;
+    }else{
+      term= owner->getCell()->getTerm(termName);
+      if (not term)
+        return false;
+    }
+
+    term->getNode()->setId( id );
+    term->setNet( owner );
+    //term->setPosition(x,y);
+    return false;
+
+  }
 
 }  // Netlist namespace.

@@ -17,20 +17,20 @@ namespace Netlist{
 
     class Instance{
         public:
-                                                Instance        (Cell* owner, Cell* model, const string&);
-                                                ~Instance       ();
-            inline const    string&             getName         () const;
-            inline          Cell*               getMasterCell   () const;
-            inline          Cell*               getCell         () const;
-            inline const    vector<Term*>&      getTerms        () const;
-                            Term*               getTerm         (const string&) const;
-            inline          Point               getPosition     () const;
-                            bool                connect         (const string& name, Net*);
-                            void                add             (Term*);
-                            void                remove          (Term*);
-            inline          void                setPosition     (const Point&);
-            inline          void                setPosition     (int x, int y);
-                            void                toXml           (ostream&);
+                                            Instance        (Cell* owner, Cell* model, const string&);
+                                            ~Instance       ();
+            inline const    string&         getName         () const;
+            inline          Cell*           getMasterCell   () const;
+            inline          Cell*           getCell         () const;
+            inline const    vector<Term*>&  getTerms        () const;
+                            Term*           getTerm         (const string&) const;
+            inline          Point           getPosition     () const;
+                            bool            connect         (const string& name, Net*);
+                            void            add             (Term*);
+                            void            remove          (Term*);
+            inline          void            setPosition     (const Point&);
+            inline          void            setPosition     (int x, int y);
+                            void            toXml           (ostream&);
 
         private:
             Cell*           owner_;

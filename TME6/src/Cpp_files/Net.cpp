@@ -73,13 +73,14 @@ namespace Netlist {
     }
 
     Net* Net::fromXml( Cell* owner, xmlTextReaderPtr reader ){
-        /*const xmlChar* netTag = xmlTextReaderConstString( reader, (const xmlChar*)"net" );
+        const xmlChar* netTag = xmlTextReaderConstString( reader, (const xmlChar*)"net" );
 
         string netName = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"name"));
         string netType = xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"type"));
 
         Term::Type type = Term::toType(netType);
-        Net* net = new Net( owner, netName, type );
+        Net* net = NULL;
+        net = new Net( owner, netName, type );
 
         while ( true ) {
             int status = xmlTextReaderRead(reader);
@@ -96,19 +97,16 @@ namespace Netlist {
                 case XML_READER_TYPE_SIGNIFICANT_WHITESPACE:
                 continue;
             }
-
-            const xmlChar* nodeName = xmlTextReaderConstLocalName( reader );
-
-            if (Node::fromXml(net, reader)) continue;
             
-            if ( (nodeName == netTag) and (xmlTextReaderNodeType(reader) == XML_READER_TYPE_END_ELEMENT) ) 
-                continue;
-
-            else cerr << "[ERROR] Net::fromXml(): Unknown or misplaced tag <" << netName
-                      << "> (line:" << xmlTextReaderGetParserLineNumber(reader) << ")." << endl;
-
+            const xmlChar* nodeName = xmlTextReaderConstLocalName( reader );
+            
+            if (Node::fromXml(net,reader)) continue;
+            
+            if ( (nodeName == netTag) and (xmlTextReaderNodeType(reader) == XML_READER_TYPE_END_ELEMENT) )
+                break;
+                
         }
-        return net;*/
+        return net;
     }
 
 }

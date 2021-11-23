@@ -44,14 +44,13 @@ namespace Netlist{
             inline          void            setPosition ( int x, int y );
                             void            toXml       ( ostream& );
         private:
-            void *          owner_;
-            string          name_;
-            Direction       direction_;
-            Type            type_;
-            Net*            net_;
-            Node            node_;
+            void *      owner_;
+            string      name_;
+            Direction   direction_;
+            Type        type_;
+            Net*        net_;
+            Node        node_;
     };
-    
 
     inline bool             Term::isInternal()                const { return (type_ == Internal); }
     inline bool             Term::isExternal()                const { return (type_ == External); }

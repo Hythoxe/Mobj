@@ -31,7 +31,7 @@ namespace Netlist {
       inline  Term*   getTerm     () const;
       inline  void    setId       ( size_t );
               void    toXml       ( std::ostream& )const;
-              bool    fromXml     ( Net*, xmlTextReaderPtr );
+      static  bool    fromXml     ( Net*, xmlTextReaderPtr );
 
     private:
                       Node        ( const Node& );

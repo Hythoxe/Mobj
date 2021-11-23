@@ -21,6 +21,7 @@ namespace Netlist {
     public:
       static       std::vector<Cell*>&     getAllCells       ();
       static       Cell*                   find              ( const std::string& );
+      static       Cell*                   load              ( const std::string& );
     public:                                                  
                                            Cell              ( const std::string& );
                                           ~Cell              ();
@@ -40,10 +41,9 @@ namespace Netlist {
                    void                    remove            ( Net* );
                    bool                    connect           ( const std::string& name, Net* net );
       inline       unsigned int            newNetId          ();
-                   Cell*                   load              ( const std::string& cellName );
                    void                    save              () const;
                    void                    toXml             ( std::ostream& ) const;
-                   Cell*                   fromXml           ( xmlTextReaderPtr );
+            static Cell*                   fromXml           ( xmlTextReaderPtr );
 
     private:
       static  std::vector<Cell*>      cells_;

@@ -176,7 +176,7 @@ namespace Netlist {
 
   Cell* Cell::load ( const string& cellName )
   {
-    string           cellFile = "./src/work/cells/" + cellName + ".xml";
+    string           cellFile = "../src/work/cells/" + cellName + ".xml";
     xmlTextReaderPtr reader;
 
     reader = xmlNewTextReaderFilename( cellFile.c_str() );

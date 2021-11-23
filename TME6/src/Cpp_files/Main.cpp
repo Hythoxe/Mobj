@@ -15,7 +15,9 @@ using namespace std;
 using namespace Netlist;
 
 
-/*int main ( int argc, char* argv[] )
+/*//Main TME4-5
+
+int main ( int argc, char* argv[] )
 {
   cout << "\nConstruction du modele <and2>." << endl;
   Cell* and2 = new Cell ( "and2" );
@@ -102,17 +104,22 @@ using namespace Netlist;
 
 }*/
 
+// Main TME6
+
 int main ( int argc, char* argv[] )
 {
   cout << "Chargement des modeles:" << endl;
   cout << "- <and2> ..." << endl;
-  Cell::load( "and2" );
+  Cell* and2 = Cell::load( "and2" );
+  //and2->toXml( cout );
 
   cout << "- <or2> ..." << endl;
-  Cell::load( "or2" );
+  Cell* or2 = Cell::load( "or2" );
+  //or2->toXml( cout );
 
   cout << "- <xor2> ..." << endl;
-  Cell::load( "xor2" );
+  Cell* xor2 = Cell::load( "xor2" );
+  //xor2->toXml( cout );
 
   cout << "- <halfadder> ..." << endl;
   Cell* halfadder = Cell::load( "halfadder" );
