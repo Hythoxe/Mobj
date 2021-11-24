@@ -61,11 +61,7 @@ namespace Netlist {
 
     if (not instanceName.empty()){
       instance = owner->getCell()->getInstance(instanceName);
-      if (not instance)
-        return false;
       term = instance->getTerm( termName );
-      if (not term)
-        return false;
     }else{
       term= owner->getCell()->getTerm(termName);
       if (not term)
