@@ -22,7 +22,7 @@ namespace Netlist {
         inline  int         getY              () const;
         inline  NameAlign   getAlign          () const;
         inline  Point       getPosition       () const;
-                string      toString          ( NameAlign ) 
+                string      toString          ( NameAlign );
         static  NameAlign   toNameAlign       ( string );
         inline  Box         getBoundingBox    () const;
                 void        toXml             ( ostream& ) const;
@@ -34,7 +34,7 @@ namespace Netlist {
   };
 
   inline Box ArcShape::getBoundingBox() const{ return box_; }
-  inline int       TermShape::getTerm()   const{ return term_; }
+  inline Term*      TermShape::getTerm()   const{ return term_; }
   inline int       TermShape::getX()      const{ return x_; }
   inline int       TermShape::getY()      const{ return y_; }
   inline NameAlign TermShape::getAlign()  const{ return align_; }

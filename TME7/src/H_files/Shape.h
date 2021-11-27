@@ -5,18 +5,15 @@
 #include <vector>
 #include "Box.h"
 #include "Symbol.h"
+#include "Net.h"
 
 namespace Netlist {
-
-  class Shape;
 
   class Shape {
     public:
                         Shape           ( Symbol* );
                         ~Shape          ();
-        inline  Symbol* getSymbol       () const; 
-                Box     getBoundingBox  () const;
-                void    toXml           ( ostream& ) const;
+        inline  Symbol* getSymbol       () const;
         static  Shape*  fromXml         ( Net*, xmlTextReaderPtr );
     private:
         Symbol* symbol_;

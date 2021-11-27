@@ -4,9 +4,12 @@
 #include <iostream>
 #include <vector>
 #include "Shape.h"
+#include "Net.h"
 #include "Symbol.h"
 
 namespace Netlist {
+
+  using namespace std;
 
   class Shape;
   class LineShape : public Shape {

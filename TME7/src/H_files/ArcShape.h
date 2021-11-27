@@ -21,7 +21,7 @@ namespace Netlist {
         static  ArcShape*   fromXml          ( Symbol*, xmlTextReaderPtr );
     private:
         Box box_;
-        int start_, span_
+        int start_, span_;
   };
 
   inline Box ArcShape::getBoundingBox() const{ return box_; }

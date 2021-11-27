@@ -14,7 +14,7 @@ namespace Netlist {
                             BoxShape          ( Symbol*, const Box& );
                             BoxShape          ( Symbol*, int x1, int y1, int x2, int y2 );
                             ~BoxShape         ();
-        inline  Box         getBoundingBox    () const;
+                Box         getBoundingBox    () const;
                 void        toXml             ( ostream& ) const;
         static  BoxShape*   fromXml           ( Symbol*, xmlTextReaderPtr );
     private:
