@@ -8,18 +8,20 @@
 #include "Net.h"
 
 namespace Netlist {
-
+  
   class Shape {
     public:
                         Shape           ( Symbol* );
-                        ~Shape          ();
+        virtual         ~Shape          ();
         inline  Symbol* getSymbol       () const;
-        static  Shape*  fromXml         ( Net*, xmlTextReaderPtr );
+        virtual Box     getBoundingBox  () const = 0;
+        virtual void    toXml             ( ostream& ) const = 0;
+        static  Shape*  fromXml         ( Symbol*, xmlTextReaderPtr );
     private:
-        Symbol* symbol_;
+        Symbol* owner_;
   };
 
-  inline Symbol* Shape::getSymbol()const{ return symbol_; }
+  inline Symbol* Shape::getSymbol()const{ return owner_; }
 
 }  // Netlist namespace.
 

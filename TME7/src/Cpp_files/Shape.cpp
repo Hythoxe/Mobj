@@ -12,10 +12,11 @@ namespace Netlist {
     using namespace std;
 
     Shape::Shape( Symbol* owner ):
-    symbol_( owner )
-    {}
+    owner_( owner )
+    { owner->add( this ); }
 
-    Shape::~Shape(){}
+    Shape::~Shape()
+    { owner_->remove( this ); }
     
     Shape* Shape::fromXml ( Symbol* owner, xmlTextReaderPtr reader ){
         // Factory-like method.

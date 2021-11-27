@@ -12,6 +12,7 @@ namespace Netlist {
   using namespace std;
 
   class Shape;
+
   class LineShape : public Shape {
     public:
                             LineShape         ( Symbol*, int x1, int y1, int x2, int y2 );

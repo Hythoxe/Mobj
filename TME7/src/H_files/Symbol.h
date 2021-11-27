@@ -20,7 +20,7 @@ namespace Netlist {
     public:
                                         Symbol          ( Cell* );
                                        ~Symbol          ();
-             Cell*                      getCell         () const;
+      inline Cell*                      getCell         () const;
              Box                        getBoundingBox  () const;
              Point                      getTermPosition ( Term* ) const;
              TermShape*                 getTermShape    ( Term* ) const;
@@ -38,6 +38,7 @@ namespace Netlist {
   };
 
 
+  inline Cell*  Symbol::getCell () const { return owner_; }
   inline const std::vector<Shape*>  Symbol::getShapes () const { return shapes_; }
 
 

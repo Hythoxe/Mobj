@@ -16,7 +16,7 @@ namespace Netlist {
                                 ~EllipseShape     ();
                 Box             getBoundingBox    () const;
                 void            toXml             ( ostream& ) const;
-        static  EllipseShape*   fromXml           ( Net*, xmlTextReaderPtr );
+        static  EllipseShape*   fromXml           ( Symbol*, xmlTextReaderPtr );
     private:
         Box box_;
   };

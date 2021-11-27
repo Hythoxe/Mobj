@@ -16,7 +16,7 @@ namespace Netlist {
 
     LineShape::~LineShape(){}
 
-    void LineShape::toXml( ostream& stream ){
+    void LineShape::toXml( ostream& stream ) const{
         stream << indent << "<line x1=\"" << x1_ 
                          << "\" y1=\""    << y1_ 
                          << "\" x2=\""    << x2_
@@ -31,7 +31,7 @@ namespace Netlist {
         int y2 = atoi(xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"y2")).c_str());
         
         LineShape* lineShape = NULL;
-        lineShape = new LineShape( symbol, x1, y1, x2, x2 );
+        lineShape = new LineShape( symbol, x1, y1, x2, y2 );
         return lineShape;
     }
 }

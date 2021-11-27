@@ -25,12 +25,12 @@
                                       H_files/Node.h
                                       H_files/Box.h
                                       H_files/Line.h
+                                      H_files/LineShape.h
+                                      H_files/BoxShape.h
+                                      H_files/EllipseShape.h
+                                      H_files/ArcShape.h
+                                      H_files/TermShape.h
                                       H_files/Shape.h
-                                      #H_files/LineShape.h
-                                      #H_files/BoxShape.h
-                                     # H_files/EllipseShape.h
-                                      #H_files/ArcShape.h
-                                      #H_files/TermShape.h
                                       #H_files/Symbol.h
                                       H_files/Cell.h
                        )
@@ -44,12 +44,12 @@
                                       Cpp_files/Node.cpp
                                       Cpp_files/Box.cpp
                                       Cpp_files/Line.cpp
-                                      Cpp_files/Shape.cpp
                                       Cpp_files/LineShape.cpp
-                                      #Cpp_files/BoxShape.cpp
-                                      #Cpp_files/EllipseShape.cpp
-                                      #Cpp_files/ArcShape.cpp
-                                      #Cpp_files/TermShape.cpp
+                                      Cpp_files/BoxShape.cpp
+                                      Cpp_files/EllipseShape.cpp
+                                      Cpp_files/ArcShape.cpp
+                                      Cpp_files/TermShape.cpp
+                                      Cpp_files/Shape.cpp
                                       #Cpp_files/Symbol.cpp
                                       Cpp_files/Cell.cpp
                                       Cpp_files/Main.cpp

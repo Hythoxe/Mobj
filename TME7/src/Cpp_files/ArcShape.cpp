@@ -15,20 +15,20 @@ namespace Netlist {
 
     ArcShape::ArcShape( Symbol* owner, int x1, int y1, int x2, int y2, int start, int span ):
     Shape( owner ),
-    box_( x1_, y1_, x2_, y2_ ),
+    box_( x1, y1, x2, y2 ),
     start_( start ),
     span_( span )
     {}
 
     ArcShape::~ArcShape(){}
 
-    void ArcShape::toXml( ostream& stream ){
-        stream << indent << "<box x1=\"" << x1_.getX1()
-                         << "\" y1=\""   << y1_.getY1()
-                         << "\" x2=\""   << x2_.getX2()
-                         << "\" y2=\""   << y2_.getY2()
-                         << "\" start=\""<< start_.getstart()
-                         << "\" span=\"" << span_.getspan()
+    void ArcShape::toXml( ostream& stream ) const{
+        stream << indent << "<box x1=\"" << box_.getX1()
+                         << "\" y1=\""   << box_.getY1()
+                         << "\" x2=\""   << box_.getX2()
+                         << "\" y2=\""   << box_.getY2()
+                         << "\" start=\""<< getstart()
+                         << "\" span=\"" << getspan()
                          << "\"/>\n";
     }
 
@@ -41,8 +41,8 @@ namespace Netlist {
         int span  = atoi(xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"span")).c_str());
         
         ArcShape* arcShape = NULL;
-        ArcShape = new ArcShape( symbol, x1, y1, x2, x2, start, span );
-        return ArcShape;
+        arcShape = new ArcShape( symbol, x1, y1, x2, y2, start, span );
+        return arcShape;
     }
     
 }

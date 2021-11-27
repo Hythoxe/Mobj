@@ -13,16 +13,16 @@ namespace Netlist {
 
     EllipseShape::EllipseShape( Symbol* owner, int x1, int y1, int x2, int y2 ):
     Shape( owner ),
-    box_( x1_, y1_, x2_, y2_ )
+    box_( x1, y1, x2, y2 )
     {}
 
     EllipseShape::~EllipseShape(){}
 
-    void EllipseShape::toXml( ostream& stream ){
-        stream << indent << "<box x1=\"" << x1_.getX1()
-                         << "\" y1=\""   << y1_.getY1()
-                         << "\" x2=\""   << x2_.getX2()
-                         << "\" y2=\""   << y2_.getY2()
+    void EllipseShape::toXml( ostream& stream ) const{
+        stream << indent << "<box x1=\"" << box_.getX1()
+                         << "\" y1=\""   << box_.getY1()
+                         << "\" x2=\""   << box_.getX2()
+                         << "\" y2=\""   << box_.getY2()
                          << "\"/>\n";
     }
 
@@ -32,9 +32,9 @@ namespace Netlist {
         int x2 = atoi(xmlCharToString( xmlTextReaderGetAttribute( reader,(const xmlChar*) "x2")).c_str());
         int y2 = atoi(xmlCharToString( xmlTextReaderGetAttribute( reader, (const xmlChar*)"y2")).c_str());
         
-        EllipseShape* EllipseShape = NULL;
-        EllipseShape = new EllipseShape( symbol, x1, y1, x2, x2 );
-        return EllipseShape;
+        EllipseShape* ellipseShape = NULL;
+        ellipseShape = new EllipseShape( symbol, x1, y1, x2, y2 );
+        return ellipseShape;
     }
     
 }
