@@ -7,6 +7,8 @@
 #include <algorithm>
 #include "Point.h"
 
+#pragma once
+
 namespace Netlist {
 
 

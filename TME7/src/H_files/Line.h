@@ -9,6 +9,8 @@
 #include "Point.h"
 #include "Node.h"
 
+#pragma once
+
 namespace Netlist {
 
   class Net;

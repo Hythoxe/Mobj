@@ -6,6 +6,8 @@
 #include <libxml/xmlreader.h>
 #include <string>
 
+#pragma once
+
 namespace Netlist {
 
 

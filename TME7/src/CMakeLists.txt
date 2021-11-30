@@ -31,7 +31,7 @@
                                       H_files/ArcShape.h
                                       H_files/TermShape.h
                                       H_files/Shape.h
-                                      #H_files/Symbol.h
+                                      H_files/Symbol.h
                                       H_files/Cell.h
                        )
                        
@@ -50,7 +50,7 @@
                                       Cpp_files/ArcShape.cpp
                                       Cpp_files/TermShape.cpp
                                       Cpp_files/Shape.cpp
-                                      #Cpp_files/Symbol.cpp
+                                      Cpp_files/Symbol.cpp
                                       Cpp_files/Cell.cpp
                                       Cpp_files/Main.cpp
                        )

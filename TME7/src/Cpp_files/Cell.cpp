@@ -178,7 +178,9 @@ namespace Netlist {
   void  Cell::remove ( Instance* instance )
   {
     for ( vector<Instance*>::iterator iinst=instances_.begin() ; iinst != instances_.end() ; ++iinst ) {
-      if (*iinst == instance) instances_.erase( iinst );
+      if(*iinst != NULL){
+        if (*iinst == instance) instances_.erase( iinst );
+      }
     }
   }
 
@@ -186,7 +188,9 @@ namespace Netlist {
   void  Cell::remove ( Term* term )
   {
     for ( vector<Term*>::iterator iterm=terms_.begin() ; iterm != terms_.end() ; ++iterm ) {
-      if (*iterm == term) terms_.erase( iterm );
+      if(*iterm != NULL){
+        if (*iterm == term) terms_.erase( iterm );
+      }
     }
   }
 
@@ -194,7 +198,9 @@ namespace Netlist {
   void  Cell::remove ( Net* net )
   {
     for ( vector<Net*>::iterator inet=nets_.begin() ; inet != nets_.end() ; ++inet ) {
-      if (*inet == net) nets_.erase( inet );
+      if(*inet != NULL){
+        if (*inet == net) nets_.erase( inet );
+      }
     }
   }
 

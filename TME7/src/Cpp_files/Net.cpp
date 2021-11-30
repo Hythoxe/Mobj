@@ -2,6 +2,7 @@
 #include "../H_files/Net.h"
 #include "../H_files/Cell.h"
 #include "../H_files/Node.h"
+#include "../H_files/Line.h"
 #include "../H_files/XmlUtil.h"
 
 namespace Netlist {
@@ -131,7 +132,7 @@ namespace Netlist {
             
             if (Node::fromXml(net,reader)) continue;
 
-            else if (Node::fromXml(net,reader)) continue;
+            else if (Line::fromXml(net,reader)) continue;
             
             if ( (nodeName == netTag) and (xmlTextReaderNodeType(reader) == XML_READER_TYPE_END_ELEMENT) )
                 break;

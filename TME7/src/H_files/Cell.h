@@ -9,6 +9,8 @@
 #include "Indentation.h"
 #include "Symbol.h"       // TME7
 
+#pragma once
+
 namespace Netlist {
 
   class Instance;

@@ -8,15 +8,15 @@ namespace Netlist {
 
     using namespace std;
 
-    TermShape::TermShape( Symbol* owner, string name, int x1, int y1, TermShape::NameAlign align):
+    TermShape::TermShape( Symbol* owner, string name, int x1, int y1, NameAlign align):
     Shape( owner ),
     term_(NULL),
     x1_( x1 ),
     y1_( y1 ),
     align_( align )
     {
-        /*Cell* cell = getCell();
-        term_ = cell->getTerm( name );*/
+        Cell* cell = owner->getCell();
+        term_ = cell->getTerm( name );
     }
 
     TermShape::~TermShape(){}

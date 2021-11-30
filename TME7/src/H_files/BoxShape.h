@@ -6,22 +6,27 @@
 #include "Shape.h"
 #include "Symbol.h"
 
+#pragma once
+
 namespace Netlist {
 
-  class Shape;
-  class BoxShape : public Shape {
-    public:
-                            BoxShape          ( Symbol*, const Box& );
-                            BoxShape          ( Symbol*, int x1, int y1, int x2, int y2 );
-                            ~BoxShape         ();
-                Box         getBoundingBox    () const;
-                void        toXml             ( ostream& ) const;
-        static  BoxShape*   fromXml           ( Symbol*, xmlTextReaderPtr );
-    private:
-        Box box_;
-  };
+    using namespace std;
+    
+    class Shape;
+    
+    class BoxShape : public Shape {
+        public:
+                                BoxShape          ( Symbol*, const Box& );
+                                BoxShape          ( Symbol*, int x1, int y1, int x2, int y2 );
+                                ~BoxShape         ();
+            inline  Box         getBoundingBox    () const;
+                    void        toXml             ( ostream& ) const;
+            static  BoxShape*   fromXml           ( Symbol*, xmlTextReaderPtr );
+        private:
+            Box box_;
+    };
 
-  inline Box BoxShape::getBoundingBox() const{ return box_; }
+    inline Box BoxShape::getBoundingBox() const{ return box_; }
 
 
 }  // Netlist namespace.

@@ -5,6 +5,7 @@
 #include "../H_files/ArcShape.h"
 #include "../H_files/EllipseShape.h"
 #include "../H_files/TermShape.h"
+#include "../H_files/Symbol.h"
 #include "../H_files/XmlUtil.h"
 
 namespace Netlist {
@@ -13,7 +14,7 @@ namespace Netlist {
 
     Shape::Shape( Symbol* owner ):
     owner_( owner )
-    { owner->add( this ); }
+    { owner_->add( this ); }
 
     Shape::~Shape()
     { owner_->remove( this ); }
