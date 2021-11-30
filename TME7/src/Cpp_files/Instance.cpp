@@ -61,11 +61,20 @@ namespace Netlist {
         }
     }
 
+    void Instance::setPosition( int x , int y ){ 
+        position_ = Point(x,y); 
+        for(Term* term : terms_){
+            Point pos = owner_->getSymbol()->getTermPosition(term);
+            pos.translate(x, y);
+            term->setPosition(pos);
+        }
+    }
+
     void Instance::toXml( ostream& stream ){
         stream << indent << "<instance name=\"" << name_ 
                          << "\" mastercell=\""  << masterCell_->getName()
-                         << "\" x=\""         << this->getPosition().getX() 
-                         << "\" y=\""         << this->getPosition().getY() 
+                         << "\" x=\""           << this->getPosition().getX() 
+                         << "\" y=\""           << this->getPosition().getY() 
                          << "\"/>\n";
     }
 

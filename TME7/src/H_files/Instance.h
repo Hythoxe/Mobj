@@ -30,7 +30,7 @@ namespace Netlist{
                             void            add             (Term*);
                             void            remove          (Term*);
             inline          void            setPosition     (const Point&);
-            inline          void            setPosition     (int x, int y);
+                            void            setPosition     (int x, int y);
                             void            toXml           (ostream&);
                    static   Instance*       fromXml         ( Cell*, xmlTextReaderPtr );
 
@@ -48,6 +48,6 @@ namespace Netlist{
     inline const vector<Term*>& Instance::getTerms()                    const { return terms_; }
     inline Point                Instance::getPosition()                 const { return position_; }
     inline void                 Instance::setPosition( const Point& p )       { setPosition(p.getX(), p.getY()); }
-    inline void                 Instance::setPosition( int x , int y )        { position_ = Point(x,y); }
+
 }
 #endif // NETLIST_INSTANCE_H
