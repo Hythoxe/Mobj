@@ -48,11 +48,13 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
                        )
 
                     set( mocIncludes  H_files/SaveCellDialog.h
+                                      H_files/OpenCellDialog.h
                                       H_files/CellWidget.h
+                                      H_files/CellViewer.h
                                       H_files/InstancesModel.h
                                       H_files/InstancesWidget.h
                                       H_files/CellsLib.h
-                                      H_files/CellViewer.h
+                                      H_files/CellsModel.h
                        )
 
                     set( cpps         Cpp_files/XmlUtil.cpp
@@ -73,11 +75,13 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
                                       Cpp_files/Symbol.cpp
                                       Cpp_files/Cell.cpp
                                       Cpp_files/SaveCellDialog.cpp
+                                      Cpp_files/OpenCellDialog.cpp
                                       Cpp_files/CellWidget.cpp
+                                      Cpp_files/CellViewer.cpp
                                       Cpp_files/InstancesModel.cpp
                                       Cpp_files/InstancesWidget.cpp
                                       Cpp_files/CellsLib.cpp
-                                      Cpp_files/CellViewer.cpp
+                                      Cpp_files/CellsModel.cpp
                                       Cpp_files/Main.cpp
 
                        )

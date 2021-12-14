@@ -8,6 +8,7 @@
 #include <QPainter>
 #include <QRect>
 #include <QPoint>
+
 class QPainter;
 #include "Box.h"
 

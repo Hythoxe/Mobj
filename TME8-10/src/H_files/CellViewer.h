@@ -5,16 +5,21 @@
 #include "CellWidget.h"
 #include "SaveCellDialog.h"
 #include "OpenCellDialog.h"
-#include "InstancesWidget.h"
+//#include "InstancesWidget.h"
+#include "CellsLib.h"
+
+#pragma once
 
 namespace Netlist {
+
+    class InstancesWidget;
 
     class CellViewer : public QMainWindow {
         Q_OBJECT;
     public:
                           CellViewer          ( QWidget* parent=NULL );
         virtual          ~CellViewer          ();
-                Cell*     getCell             () const;
+        inline  Cell*     getCell             () const;
         inline  CellsLib* getCellsLib         ();  // TME9+.
     public slots:
                 void      setCell             ( Cell* );
@@ -30,7 +35,10 @@ namespace Netlist {
         OpenCellDialog*  openCellDialog_;
     };
 
-   inline  CellsLib* CellViewer::getCellsLib(){ return cellsLib_;}
+
+    inline Cell*     CellViewer::getCell() const{ return cellWidget_->getCell(); }
+    inline CellsLib* CellViewer::getCellsLib(){ return cellsLib_;}
+    inline void      CellViewer::showCellsLib(){ cellsLib_->show(); }
 
 }
     

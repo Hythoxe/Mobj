@@ -15,6 +15,7 @@ using namespace std;
 #include "../H_files/Instance.h"
 #include "../H_files/Cell.h"
 #include "../H_files/CellViewer.h"
+#include "../H_files/Error.h"
 
 using namespace Netlist;
 
@@ -44,20 +45,17 @@ int main ( int argc, char* argv[] )
   int rvalue = qa->exec();
   delete qa;
   return rvalue;
-
+  return 0;
+  /*
   try {
-    Cell * cell = Cell :: load (" halfadder " );
+    Cell* cell = Cell::load( "halfadder" );
   }
-  catch ( int & e ) {
+  catch( int& e ) {
     cerr << "[ERROR] code:" << e << endl ;
     exit (1);
   }
-  catch ( Error & e ) {
+  catch( Error& e ) {
     cerr << "[ERROR]" << e.what() << endl ;
     exit (1);
-  }
-  catch ( ... ) {
-    cerr << "[ERROR] Dans quel etat j’erre." << endl ;
-    exit (1);
-  }
+  }*/
 }

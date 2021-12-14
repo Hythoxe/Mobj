@@ -35,7 +35,7 @@ namespace Netlist{
 
         QFrame* separator = new  QFrame  ();
         separator ->setFrameShape ( QFrame :: HLine );
-        separator ->setFrameShadow( QFrame :: Sunken  );
+        separator ->setFrameShadow( QFrame :: Sunken );
 
         QVBoxLayout* vLayout = new  QVBoxLayout  ();
         vLayout->setSizeConstraint( QLayout :: SetFixedSize  );
@@ -47,6 +47,8 @@ namespace Netlist{
         connect( okButton, SIGNAL(clicked ()), this, SLOT(accept ()) );
         connect( cancelButton, SIGNAL(clicked ()), this, SLOT(reject ()) );
     }
+
+    SaveCellDialog::~SaveCellDialog(){}
 
     bool SaveCellDialog::run( QString & name ){
         setCellName( name );

@@ -9,6 +9,7 @@
 #include "CellViewer.h"
 #include "InstancesModel.h"
 
+#pragma once
 
 namespace Netlist{
 
@@ -27,5 +28,8 @@ namespace Netlist{
                     QTableView*     view_;
                     QPushButton*    load_;
         };
+    
+    inline void InstancesWidget::setCell( Cell* cell ){ baseModel_->setCell(cell); }
+
 }
 #endif // NETLIST_INSTANCE_WIDGET_H

@@ -3,6 +3,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+
 #include "../H_files/OpenCellDialog.h"
 
 namespace Netlist{
@@ -35,7 +36,7 @@ namespace Netlist{
 
         QFrame* separator = new  QFrame  ();
         separator ->setFrameShape ( QFrame :: HLine );
-        separator ->setFrameShadow( QFrame :: Sunken  );
+        separator ->setFrameShadow( QFrame :: Sunken );
 
         QVBoxLayout* vLayout = new  QVBoxLayout  ();
         vLayout->setSizeConstraint( QLayout :: SetFixedSize  );
@@ -48,9 +49,10 @@ namespace Netlist{
         connect( cancelButton, SIGNAL(clicked ()), this, SLOT(reject ()) );
     }
 
+    OpenCellDialog::~OpenCellDialog(){}
+
     bool OpenCellDialog::run( QWidget* parent, QString & name ){
         OpenCellDialog* dialog = new OpenCellDialog(parent);
-        setCellName( name );
         int dialogResult = dialog->exec();
         name = dialog->getCellName();
         return ( dialogResult == Accepted );

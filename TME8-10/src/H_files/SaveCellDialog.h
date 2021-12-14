@@ -7,6 +7,8 @@
 class QCheckBox;
 class QLineEdit;
 
+#pragma once
+
 namespace Netlist{
 
     class SaveCellDialog : public QDialog {

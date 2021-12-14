@@ -1,5 +1,5 @@
-#ifndef NETLIST_INSTANCE_MODEL_H
-#define NETLIST_INSTANCE_MODEL_H
+#ifndef NETLIST_CELLS_MODEL_H
+#define NETLIST_CELLS_MODEL_H
 
 #include <QDialog>
 #include <QLineEdit>
@@ -12,11 +12,11 @@
 namespace Netlist{
 
     
-    class InstancesModel : public QAbstractTableModel {
+    class CellsModel : public QAbstractTableModel {
         Q_OBJECT ;
         public :
-                                InstancesModel  ( QObject* parent = NULL );
-                                ~InstancesModel ();
+                                CellsModel      ( QObject* parent = NULL );
+                                ~CellsModel     ();
                     void        setCell         ( Cell* );
                     Cell*       getModel        ( int row );
             inline  int         rowCount        ( const QModelIndex& parent=QModelIndex() ) const;
@@ -27,9 +27,9 @@ namespace Netlist{
             Cell * cell_ ;
         };
 
-    inline int InstancesModel::rowCount( const QModelIndex& parent ) const{ return (cell_)?cell_->getInstances().size():0; };
+    inline int CellsModel::rowCount( const QModelIndex& parent ) const{ return (cell_)?cell_->getInstances().size():0; };
 
-    inline int InstancesModel::columnCount( const QModelIndex& parent ) const{ return 2; }
+    inline int CellsModel::columnCount( const QModelIndex& parent ) const{ return 2; }
 
 }
-#endif // NETLIST_INSTANCE_MODEL_H
+#endif // NETLIST_CELLS_MODEL_H
