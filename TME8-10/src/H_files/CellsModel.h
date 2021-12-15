@@ -23,13 +23,15 @@ namespace Netlist{
             inline  int         columnCount     ( const QModelIndex& parent=QModelIndex() ) const;
                     QVariant    data            ( const QModelIndex& index , int role=Qt::DisplayRole ) const;
                     QVariant    headerData      ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
+                    void        updateDatas     ();
         private :
             Cell * cell_ ;
         };
 
-    inline int CellsModel::rowCount( const QModelIndex& parent ) const{ return (cell_)?cell_->getInstances().size():0; };
+    inline int CellsModel::rowCount( const QModelIndex& parent ) const{ return cell_->getAllCells().size(); };
 
-    inline int CellsModel::columnCount( const QModelIndex& parent ) const{ return 2; }
+    inline int CellsModel::columnCount( const QModelIndex& parent ) const{ return 1; }
 
+    
 }
 #endif // NETLIST_CELLS_MODEL_H

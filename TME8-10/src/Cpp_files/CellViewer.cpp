@@ -58,14 +58,11 @@ namespace Netlist{
         connect( action, SIGNAL ( triggered() ), this, SLOT( close() ) );
 
         QDockWidget* dock = new QDockWidget( "&Cell", this );
-        dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
         dock->setWidget(cellsLib_);
         addDockWidget(Qt::RightDockWidgetArea, dock);
         fileMenu->addAction( action );
-        connect( action, SIGNAL ( triggered() ), cellsLib_->getBaseModel(), SLOT( updateDatas() ) );
-
+        
         dock = new QDockWidget( "&Instance", this );
-        dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
         dock->setWidget(instancesWidget_);
         addDockWidget(Qt::RightDockWidgetArea, dock);
         fileMenu->addAction( action );
@@ -75,26 +72,26 @@ namespace Netlist{
     
     void CellViewer::setCell( Cell* cell ){
         cellWidget_->setCell(cell);
-        //instancesWidget_->setCell(cell);
+        instancesWidget_->setCell(cell);
     }
 
     void CellViewer::saveCell(){
         Cell* cell = getCell ();
         if ( cell == NULL ) return;
-        QString  cellName = cell ->getName (). c_str ();
-        if (saveCellDialog_ ->run(cellName )) {
-            cell ->setName( cellName.toStdString () );
-            cell ->save    ( cellName.toStdString () );
+        QString  cellName = cell->getName(). c_str();
+        if (saveCellDialog_->run(cellName )) {
+            cell->setName( cellName.toStdString() );
+            cell->save   ( cellName.toStdString() );
         }
     }
 
     void CellViewer::openCell(){
         QString  cellName;
         if (openCellDialog_->run(this, cellName)) {
-            Cell* cell = Cell::find(cellName.toStdString());
-            if (not cell){
-                cell = Cell::load(cellName.toStdString());
-            }
+            emit cellLoaded();
+            Cell* cell = cell->find(cellName.toStdString());
+            if ( cell == NULL )
+                cell->load(cellName.toStdString());
             if (cell)
                 setCell(cell);
         }

@@ -1,4 +1,3 @@
-# include "../H_files/Instance.h"
 # include "../H_files/CellsModel.h"
 
 namespace Netlist{
@@ -17,7 +16,7 @@ namespace Netlist{
     }
 
     QVariant CellsModel::data( const QModelIndex& index, int role ) const{
-        if ( not cell_ or not index . isValid ()) return QVariant ();
+        if ( not index . isValid ()) return QVariant ();
         if ( role == Qt :: DisplayRole ) {
             int row = index . row ();
             switch ( index . column () ) {
@@ -30,7 +29,6 @@ namespace Netlist{
     QVariant CellsModel::headerData( int section, Qt::Orientation orientation, int role ) const{
         if ( orientation == Qt :: Vertical ) return QVariant ();
         if ( role != Qt :: DisplayRole ) return QVariant ();
-
         switch ( section ) {
             case 0: return " Cell " ;
         }
@@ -42,6 +40,12 @@ namespace Netlist{
         if ( row >= (int) cell_->getAllCells().size()) return NULL ;
         return cell_->getAllCells()[row];
     }
+
+    void CellsModel::updateDatas(){
+        emit layoutAboutToBeChanged();
+        emit layoutChanged();
+    }
+
 
 }
 

@@ -1,7 +1,7 @@
 #ifndef NETLIST_ERROR_H
 #define NETLIST_ERROR_H
 
-# include <exception>
+#include <exception>
 
 namespace Netlist{
     class Error: public std::exception {
@@ -14,13 +14,5 @@ namespace Netlist{
         public:
             const char* what () const throw() { return message_.c_str(); };
     };
-
-    /*while(true){
-        switch (state) {
-          // Reading node contents .
-        } // End switch(state).
-        throw Error ( "[ERROR] Cell::fromXml(): Unknown or misplaced tag." );
-    } // End while(true).*/
-
 }
 #endif // NETLIST_ERROR_H

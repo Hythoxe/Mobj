@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include <memory>
+#include <exception>
 
 #include <QApplication>
 #include <QtGui>
@@ -22,33 +23,30 @@ using namespace Netlist;
 
 int main ( int argc, char* argv[] )
 {
-  cout << "Chargement des modeles..." << endl;
-  Cell::load( "vdd" );
-  Cell::load( "gnd" );
-  Cell::load( "TransistorN" );
-  Cell::load( "TransistorP" );
-  Cell::load( "and2" );
-  Cell::load( "or2" );
-  Cell* xor2      = Cell::load( "xor2" );
-  Cell* halfadder = Cell::load( "halfadder" );
-
-  cout << "\nContenu du <xor2>:" << endl;
-  xor2->toXml( cout );
-
-  cout << "\nContenu du <halfadder>:" << endl;
-  halfadder->toXml( cout );
-
-  QApplication* qa = new QApplication( argc , argv );
-  CellViewer* viewer = new CellViewer();
-  viewer->setCell( halfadder );
-  viewer->show();
-  int rvalue = qa->exec();
-  delete qa;
-  return rvalue;
-  return 0;
-  /*
   try {
-    Cell* cell = Cell::load( "halfadder" );
+    cout << "Chargement des modeles..." << endl;
+    Cell::load( "vdd" );
+    Cell::load( "gnd" );
+    Cell::load( "TransistorN" );
+    Cell::load( "TransistorP" );
+    Cell::load( "and2" );
+    Cell::load( "or2" );
+    Cell* xor2      = Cell::load( "xor2" );
+    Cell* halfadder = Cell::load( "halfadder" );
+
+    cout << "\nContenu du <xor2>:" << endl;
+    xor2->toXml( cout );
+
+    cout << "\nContenu du <halfadder>:" << endl;
+    halfadder->toXml( cout );
+
+    QApplication* qa = new QApplication( argc , argv );
+    CellViewer* viewer = new CellViewer();
+    viewer->setCell( halfadder );
+    viewer->show();
+    int rvalue = qa->exec();
+    delete qa;
+    return rvalue;
   }
   catch( int& e ) {
     cerr << "[ERROR] code:" << e << endl ;
@@ -57,5 +55,6 @@ int main ( int argc, char* argv[] )
   catch( Error& e ) {
     cerr << "[ERROR]" << e.what() << endl ;
     exit (1);
-  }*/
+  }
+  return 0;
 }

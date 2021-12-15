@@ -51,7 +51,7 @@ namespace Netlist{
 
     }
 
-    int CellsLib :: getSelectedRow () const{
+    int CellsLib::getSelectedRow() const{
         QModelIndexList selecteds = view_->selectionModel()->selection().indexes();
         if (selecteds.empty()) return -1;
         return selecteds.first().row();

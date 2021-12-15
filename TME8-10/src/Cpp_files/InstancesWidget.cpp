@@ -45,8 +45,8 @@ namespace Netlist{
         hbox->addWidget( load_ );
         hbox->addStretch();
 
-        vbox->addLayout(hbox);
-        setLayout(vbox);
+        vbox->addLayout( hbox );
+        setLayout( vbox );
 
     }
 

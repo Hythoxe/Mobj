@@ -2,11 +2,13 @@
 
 #include  <cstdlib>
 #include  <fstream>
+#include <exception>
 #include  "../H_files/XmlUtil.h"
 #include  "../H_files/Cell.h"
 #include  "../H_files/Term.h"
 #include  "../H_files/Net.h"
 #include  "../H_files/Instance.h"
+#include  "../H_files/Error.h"
 
 
 namespace Netlist {
@@ -351,13 +353,14 @@ namespace Netlist {
           break;
       }
 
-      cerr << "[ERROR] Cell::fromXml(): Unknown or misplaced tag <" << nodeName
-           << "> (line:" << xmlTextReaderGetParserLineNumber(reader) << ")." << endl;
+      /*cerr << "[ERROR] Cell::fromXml(): Unknown or misplaced tag <" << nodeName
+           << "> (line:" << xmlTextReaderGetParserLineNumber(reader) << ")." << endl;*/
+      throw Error ( "[ERROR] Cell::fromXml(): Unknown or misplaced tag." );
+      
       break;
     }
-
     return cell;
   }
-
+  
 
 }  // Netlist namespace.
