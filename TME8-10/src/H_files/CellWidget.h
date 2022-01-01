@@ -40,7 +40,10 @@ namespace Netlist {
   protected:
     virtual void    paintEvent         ( QPaintEvent* );
     virtual void    keyPressEvent      ( QKeyEvent* );
-            void    query              ( unsigned int flags, QPainter & painter );
+            //void    InstanceShapes     ( QPainter& painter );
+            //void    CellTerm           ( QPainter& painter );
+            //void    Fils               ( QPainter& painter );
+            void    query              ( unsigned int flags, QPainter& painter );
   public slots:
     virtual void    goLeft             ();
     virtual void    goRight            ();
@@ -52,14 +55,18 @@ namespace Netlist {
 };
 
   inline Cell*  CellWidget::getCell            () const { return cell_; }
-  inline QRect  CellWidget::boxToScreenRect    ( const Box &) const {  }
-  inline QPoint CellWidget::pointToScreenPoint ( const Point &) const {  }
-  inline Box    CellWidget::screenRectToBox    ( const QRect &) const {  }
-  inline Point  CellWidget::screenPointToPoint ( const QPoint &) const {  }
+
   inline int    CellWidget::xToScreenX         ( int x ) const{ return x - viewport_.getX1(); }
-  inline int    CellWidget::yToScreenY         ( int y ) const{ return viewport_.getX2() - y; }
+  inline int    CellWidget::yToScreenY         ( int y ) const{ return viewport_.getY2() - y; }
+  inline QRect  CellWidget::boxToScreenRect    ( const Box& box ) const { return QRect(pointToScreenPoint( Point(box.getX1(), box.getY2()) ), 
+                                                                                       pointToScreenPoint( Point(box.getX2(), box.getY1()) )); }
+  inline QPoint CellWidget::pointToScreenPoint ( const Point& point ) const { return QPoint(xToScreenX( point.getX() ), yToScreenY( point.getY() )); }
+
   inline int    CellWidget::screenXToX         ( int x ) const{ return x + viewport_.getX1(); }
   inline int    CellWidget::screenYToY         ( int y ) const{ return viewport_.getX2() - y; }
+  inline Box    CellWidget::screenRectToBox    ( const QRect& rect ) const { return Box(screenPointToPoint( QPoint(rect.x(), rect.y()) ), 
+                                                                                        screenPointToPoint( QPoint(rect.width()+rect.x(), rect.height()+rect.y() ))); }
+  inline Point  CellWidget::screenPointToPoint ( const QPoint& point ) const { return Point(screenXToX( point.x() ), screenYToY( point.y() )); }
 
 }  // Netlist namespace.
 

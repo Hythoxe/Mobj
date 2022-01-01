@@ -45,6 +45,7 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
                                       H_files/Symbol.h
                                       H_files/Error.h
                                       H_files/Cell.h
+                                      H_files/about.h
                        )
 
                     set( mocIncludes  H_files/SaveCellDialog.h
@@ -55,6 +56,7 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
                                       H_files/InstancesWidget.h
                                       H_files/CellsLib.h
                                       H_files/CellsModel.h
+                                      H_files/about.h
                        )
 
                     set( cpps         Cpp_files/XmlUtil.cpp
@@ -82,8 +84,8 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
                                       Cpp_files/InstancesWidget.cpp
                                       Cpp_files/CellsLib.cpp
                                       Cpp_files/CellsModel.cpp
+                                      Cpp_files/about.cpp
                                       Cpp_files/Main.cpp
-
                        )
 
            qt5_wrap_cpp( mocCpps      ${mocIncludes} )

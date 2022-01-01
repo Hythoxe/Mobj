@@ -3,6 +3,7 @@
 #include  <QPushButton>
 #include  <QBoxLayout>
 
+
 #include "../H_files/InstancesWidget.h"
 #include "../H_files/CellViewer.h"
 
@@ -25,7 +26,7 @@ namespace Netlist{
         view_->setSelectionMode( QAbstractItemView::SingleSelection );
         view_->setSortingEnabled( true );
         view_->setModel( baseModel_ ); // On associe le modele .
-
+        
         QHeaderView * horizontalHeader = view_->horizontalHeader();
         horizontalHeader->setDefaultAlignment( Qt::AlignHCenter );
         horizontalHeader->setMinimumSectionSize( 300 );

@@ -17,6 +17,7 @@ namespace Netlist {
       inline                    Box             ();
       inline                    Box             ( int x1, int y1, int x2, int y2 );
       inline                    Box             ( const Box& );
+      inline                    Box             ( const Point&, const Point& );
       inline                   ~Box             ();
       inline bool               isEmpty         () const;
       inline int                getX1           () const;
@@ -62,7 +63,12 @@ namespace Netlist {
      : x1_(other.x1_), y1_(other.y1_), x2_(other.x2_), y2_(other.y2_)
   { }
   
+
+  inline Box::Box ( const Point& topleft , const Point& bottomright )//tentative de contructeur resemblant a Qrect
+     : x1_(topleft.getX()), y1_(topleft.getY()), x2_(bottomright.getX()), y2_(bottomright.getY())
+  { }
   
+
   inline Box::~Box () { }
   
   

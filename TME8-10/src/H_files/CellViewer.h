@@ -5,6 +5,7 @@
 #include "CellWidget.h"
 #include "SaveCellDialog.h"
 #include "OpenCellDialog.h"
+#include "about.h"
 //#include "InstancesWidget.h"
 #include "CellsLib.h"
 
@@ -28,12 +29,14 @@ namespace Netlist {
         inline  void      showCellsLib        ();  // TME9+.
                 void      showInstancesWidget ();  // TME9+.
         virtual void      cellLoaded          (){};
+                void      about               ();
     private:
         CellWidget*      cellWidget_;
         CellsLib*        cellsLib_;         // TME9+.
         InstancesWidget* instancesWidget_;  // TME9+.
         SaveCellDialog*  saveCellDialog_;
         OpenCellDialog*  openCellDialog_;
+        About*           about_;
     };
 
 

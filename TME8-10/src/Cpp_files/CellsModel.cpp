@@ -36,7 +36,7 @@ namespace Netlist{
     }
 
     Cell * CellsModel::getModel ( int row ){
-        if ( not cell_ ) return NULL ;
+        //if ( not cell_ ) return NULL ;
         if ( row >= (int) cell_->getAllCells().size()) return NULL ;
         return cell_->getAllCells()[row];
     }
