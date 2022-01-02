@@ -1,0 +1,5 @@
+Les ajouts: 
+    - J'ai remi la fonction About que j'ai fait l'année dernière qui fonctionne pareil
+    - Modification complète de l'interface en mode graphique
+Les problème:
+    - J'ai un bug d'interface qui concerne les fils je n'ai pas réussi à trouver la source du problème.

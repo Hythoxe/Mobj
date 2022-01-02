@@ -1,4 +1,3 @@
-#include  <QMenuBar>
 #include  <QHeaderView>
 #include  <QPushButton>
 #include  <QBoxLayout>
@@ -26,7 +25,7 @@ namespace Netlist{
         view_->setSelectionMode( QAbstractItemView::SingleSelection );
         view_->setSortingEnabled( true );
         view_->setModel( baseModel_ ); // On associe le modele .
-        
+
         QHeaderView * horizontalHeader = view_->horizontalHeader();
         horizontalHeader->setDefaultAlignment( Qt::AlignHCenter );
         horizontalHeader->setMinimumSectionSize( 300 );
@@ -46,6 +45,7 @@ namespace Netlist{
         hbox->addWidget( load_ );
         hbox->addStretch();
 
+        vbox->setSizeConstraint( QLayout::SetFixedSize );
         vbox->addLayout( hbox );
         setLayout( vbox );
 
